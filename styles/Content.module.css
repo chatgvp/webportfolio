@@ -1,0 +1,104 @@
+.highlight {
+    color: light-dark(var(bright-pink-8), var(bright-pink-1));
+}
+
+.description {
+    text-align: center;
+
+    @media screen and (max-width: 480px) {
+        text-align: left;
+        font-size: 16px; /* Define your smaller font size here */
+    }
+}
+.wrapper {
+    position: relative;
+    box-sizing: border-box;
+    background-color: light-dark(
+        var(--mantine-color-white),
+        var(--mantine-color-dark-8)
+    );
+}
+.title {
+    text-align: center;
+    font-family: Greycliff CF, var(--mantine-font-family);
+    font-size: rem(62px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0;
+    padding: 0;
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+}
+
+.price {
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+}
+
+.carousel {
+    @mixin hover {
+        .carouselControls {
+            opacity: 1;
+        }
+    }
+}
+
+/* .carouselControls {
+    transition: opacity 150ms ease;
+    opacity: 0;
+}
+
+.carouselIndicator {
+    width: rem(4px);
+    height: rem(4px);
+    transition: width 250ms ease;
+
+    &.active {
+        width: rem(16px);
+    }
+} */
+.card {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 150ms ease, box-shadow 100ms ease;
+    padding: var(--mantine-spacing-xl);
+    padding-left: calc(var(--mantine-spacing-xl) * 2);
+}
+
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* An attractive box-shadow */
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: rem(6px);
+    background-image: linear-gradient(
+        0,
+        var(--mantine-color-pink-6),
+        var(--mantine-color-orange-6)
+    );
+}
+/* 
+.link {
+    display: block;
+    text-decoration: none;
+    color: var(--mantine-color-text);
+    line-height: 1.2;
+    font-size: var(--mantine-font-size-sm);
+    padding: var(--mantine-spacing-xs);
+    border-top-right-radius: var(--mantine-radius-sm);
+    border-bottom-right-radius: var(--mantine-radius-sm);
+    border-left: rem(1px) solid
+        light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+
+    &:hover {
+        background-color: light-dark(
+            var(--mantine-color-gray-0),
+            var(--mantine-color-dark-6)
+        );
+    }
+} */
