@@ -21,6 +21,51 @@ const mockdata = [
         icon: IconUser,
     },
 ]
+import {
+    SiBootstrap,
+    SiCplusplus,
+    SiDjango,
+    SiFastapi,
+    SiFirebase,
+    SiFlutter,
+    SiJavascript,
+    SiJquery,
+    SiMysql,
+    SiNextdotjs,
+    SiPhp,
+    SiPython,
+    SiReact,
+} from "react-icons/si"
+const projectData: {
+    title: string
+    description: string
+    images: any[]
+    tech: string[] //{ icon: React.ReactNode; label: string }[]
+}[] = []
+// --------------------------------------------------------------------------Escobar Electronics --------------------------------------------------------------------
+
+const escobarImageSources: any[] = []
+const escobarImageCount = 24
+const escobarImagePromises = []
+
+for (let i = 1; i <= escobarImageCount; i++) {
+    const imagePromise = import(`../../public/projects/apluz/${i}.png`)
+    escobarImagePromises.push(imagePromise)
+}
+Promise.all(escobarImagePromises).then((images) => {
+    images.forEach((image) => {
+        escobarImageSources.push(image.default.src)
+    })
+    projectData.push({
+        title: "Escobar Inventory Management",
+        description:
+            "Escobar's web-based pharmacy inventory management system empowers administrators to efficiently control stock levels and offers customers an intuitive, seamless shopping experience for comprehensive online retail solutions",
+        images: escobarImageSources,
+        tech: ["PHP", "Mysql", "Bootstrap", "HTML/CSS", "Javascript", "JQuery"],
+    })
+})
+// --------------------------------------------------------------------------Apluz Electronics --------------------------------------------------------------------
+
 const apluzImageSources: any[] = []
 const apluzImageCount = 24
 const apluzImagePromises = []
@@ -34,13 +79,14 @@ Promise.all(apluzImagePromises).then((images) => {
         apluzImageSources.push(image.default.src)
     })
     projectData.push({
-        title: "Apluz Website",
+        title: "Apluz Electronics",
         description:
             "This eCommerce website, enables administrators to manage inventory by stocking in and out items, while also offering a platform for customers to browse, purchase, and enjoy a seamless shopping experience. It provides a comprehensive solution for online retail with an intuitive interface and robust inventory management capabilities.",
         images: apluzImageSources,
+        tech: ["PHP", "Mysql", "Bootstrap", "HTML/CSS", "Javascript", "JQuery"],
     })
 })
-
+// --------------------------------------------------------------------------Resubot --------------------------------------------------------------------
 const resubotImageSources: any[] = []
 const resubotImageCount = 4
 const resubotImagePromises = []
@@ -55,12 +101,14 @@ Promise.all(resubotImagePromises).then((images) => {
         resubotImageSources.push(image.default.src)
     })
     projectData.push({
-        title: "resubotImages",
+        title: "Resubot ",
         description:
             "This is Resubot a Resume Analysis System is a powerful tool designed to evaluate resumes and provide detailed insights. It scans and assesses resumes, extracting valuable information to offer tailored results. Employers can quickly identify qualified candidates while job seekers receive feedback on their resume's strengths and weaknesses, streamlining the hiring process.",
         images: resubotImageSources,
+        tech: ["PHP", "Mysql", "Bootstrap", "HTML/CSS", "Javascript", "JQuery"],
     })
 })
+// --------------------------------------------------------------------------purrfect pet --------------------------------------------------------------------
 const purrfectpetImageSources: any[] = []
 const purrfectpetImageCount = 13
 const purrfectpetImagePromises = []
@@ -79,10 +127,38 @@ Promise.all(purrfectpetImagePromises).then((images) => {
         description:
             "The Pet Management System is a robust platform designed for pet and owner management. Tailored for veterinary clinics, it streamlines record-keeping, appointment scheduling, and medical history tracking for pets. This user-friendly system simplifies daily operations, ensuring top-notch care for furry companions.",
         images: purrfectpetImageSources,
+        tech: ["PHP", "Mysql", "Bootstrap", "HTML/CSS", "Javascript", "JQuery"],
+    })
+})
+// --------------------------------------------------------------------------ChatApp --------------------------------------------------------------------
+
+const chatAppSources: any[] = []
+const chatAppCount = 7
+const chatAppPromises = []
+
+for (let i = 1; i <= chatAppCount; i++) {
+    const imagePromise = import(`../../public/projects/chatapp/${i}.png`)
+    chatAppPromises.push(imagePromise)
+}
+Promise.all(chatAppPromises).then((images) => {
+    images.forEach((image) => {
+        chatAppSources.push(image.default.src)
+    })
+    projectData.push({
+        title: "Apluz Electronics",
+        description:
+            "This eCommerce website, enables administrators to manage inventory by stocking in and out items, while also offering a platform for customers to browse, purchase, and enjoy a seamless shopping experience. It provides a comprehensive solution for online retail with an intuitive interface and robust inventory management capabilities.",
+        images: chatAppSources,
+        tech: ["PHP", "Mysql", "Bootstrap", "HTML/CSS", "Javascript", "JQuery"],
     })
 })
 
-const projectData: { title: string; description: string; images: any[] }[] = []
+// const projectData: {
+//     title: string
+//     description: string
+//     images: any[]
+//     tech: string[]
+// }[] = []
 
 const Experience = [
     {

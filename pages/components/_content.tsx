@@ -23,6 +23,8 @@ import {
     Stack,
     List,
     ListItem,
+    ThemeIcon,
+    Anchor,
 } from "@mantine/core"
 import classes from "../../styles/Content.module.css"
 import { Carousel } from "@mantine/carousel"
@@ -36,6 +38,7 @@ import {
 import { useEffect, useRef } from "react"
 import { modals } from "@mantine/modals"
 import {
+    SiBookstack,
     SiBootstrap,
     SiCplusplus,
     SiDjango,
@@ -43,12 +46,14 @@ import {
     SiFirebase,
     SiFlutter,
     SiJavascript,
+    SiJquery,
     SiMysql,
     SiNextdotjs,
     SiPhp,
     SiPython,
     SiReact,
 } from "react-icons/si"
+import { IconCircleCheck } from "@tabler/icons-react"
 const techIcons = [
     { icon: <SiNextdotjs />, label: "NextJs" },
     { icon: <SiReact />, label: "ReactJs" },
@@ -61,6 +66,7 @@ const techIcons = [
     { icon: <SiPython />, label: "Python" },
     { icon: <SiMysql />, label: "Mysql" },
     { icon: <SiFirebase />, label: "Firebase" },
+    { icon: <SiJquery />, label: "Jquery" },
 ]
 export default function Content() {
     const IconWithLabel = techIcons.map((item, index) => (
@@ -84,19 +90,30 @@ export default function Content() {
             </Tabs.List>
             <div>
                 {Experience.map((experience, index) => (
-                    <Tabs.Panel value={index.toString()} key={index}>
+                    <Tabs.Panel value={index.toString()} key={index} p="xl">
                         <h4>
                             <b>{experience.description.title}</b>
                         </h4>
                         <b>{experience.name}</b>
-                        <Text c="dimmed">{experience.date}</Text>
+                        <Text c="dimmed" fz="lg">
+                            {experience.date}
+                        </Text>
                         <Container size="sm">
-                            <List>
+                            <List
+                                type="ordered"
+                                icon={
+                                    <ThemeIcon
+                                        color="teal"
+                                        size={24}
+                                        radius="xl">
+                                        <SiBookstack size="1rem" />
+                                    </ThemeIcon>
+                                }>
                                 {experience.description.subdescription.map(
                                     (subDesc, subIndex) => (
-                                        <ListItem key={subIndex}>
+                                        <List.Item key={subIndex} fz="lg">
                                             {subDesc.text}
-                                        </ListItem>
+                                        </List.Item>
                                     )
                                 )}
                             </List>
@@ -108,7 +125,7 @@ export default function Content() {
     )
     return (
         <>
-            <Container py="xl" id="About">
+            <Container py="xl" id="About" pt="xl">
                 <Title order={2} className={classes.title} my="sm">
                     ABOUT
                 </Title>
@@ -118,8 +135,8 @@ export default function Content() {
                         <Text fz="lg">
                             I am <b>George Vincent Peña</b>, a passionated web
                             developer who enjoys problem-solving and building
-                            programming applications. I'm excited to learn and
-                            grow, confidently progressing on this journey.
+                            programming applications. I&apos;m excited to learn
+                            and grow, confidently progressing on this journey.
                         </Text>
                         <br />
                         <Text fz="lg">
@@ -139,13 +156,14 @@ export default function Content() {
                 <Divider></Divider>
                 <Text
                     c="dimmed"
-                    className={classes.description}
+                    // className={classes.description}
+                    fz="lg"
                     ta="center"
                     mt="md">
-                    Currently, I am actively engaged in leveraging my
-                    proficiency in ReactJS and Python, while also possessing a
-                    well-honed skill set in PHP and MySQL, cultivated through
-                    hands-on experience and expertise.
+                    In my learning journey, I've gained experience in web
+                    development and mobile app development, working on a variety
+                    of projects that involve API integration, CSS design, and
+                    database management.
                 </Text>
                 <Grid grow>
                     {projectData.map((project, index) => (
@@ -163,24 +181,42 @@ export default function Content() {
                                         mt="md">
                                         {project.description}
                                     </Text>
+                                    <Text fz="lg" fw={700} py="sm">
+                                        Technology used in this project
+                                    </Text>
+
+                                    <SimpleGrid cols={3}>
+                                        {project.tech.map((tech, index) => (
+                                            <SimpleGrid cols={3}>
+                                                <Text c="dimmed" fz="lg">
+                                                    {tech}
+                                                </Text>
+                                            </SimpleGrid>
+                                        ))}
+                                    </SimpleGrid>
                                 </Grid.Col>
                                 <Grid.Col span={7}>
-                                    <Paper>
-                                        <Carousel
-                                            slideGap="xl"
-                                            draggable={false}
-                                            withIndicators>
-                                            {project.images.map(
-                                                (image, imageIndex) => (
-                                                    <Carousel.Slide
-                                                        className={classes.card}
-                                                        key={imageIndex}>
-                                                        <Image src={image} />
-                                                    </Carousel.Slide>
-                                                )
-                                            )}
-                                        </Carousel>
-                                    </Paper>
+                                    <Carousel
+                                        slideGap="xl"
+                                        draggable={false}
+                                        withIndicators
+                                        className={`${classes.carousel}`} // Add classes for custom styling
+                                    >
+                                        {project.images.map(
+                                            (image, imageIndex) => (
+                                                <Carousel.Slide
+                                                    className={`${classes.card}`}
+                                                    key={imageIndex}>
+                                                    <Image
+                                                        height="300vh"
+                                                        src={image}
+                                                        alt={`${image} ${imageIndex}`}
+                                                        className={`${classes.image}`} // Add classes for custom styling
+                                                    />
+                                                </Carousel.Slide>
+                                            )
+                                        )}
+                                    </Carousel>
                                 </Grid.Col>
                             </Grid>
                         </Grid.Col>
@@ -196,16 +232,18 @@ export default function Content() {
                     c="dimmed"
                     className={classes.description}
                     ta="center"
+                    fz="lg"
                     mt="md">
                     Here are some of the experience i have gained in my learning
                     jouney
                 </Text>
                 {Experiences}
             </Container>
-            <Container py="xl" id="Certificates">
-                <Title order={2} className={classes.title} ta="center" mt="sm">
+            <Container py="xl" id="Certificates" my="xl">
+                <Title order={2} className={classes.title} ta="center" my="sm">
                     CERTIFICATES
                 </Title>
+                <Divider></Divider>
                 <Text
                     c="dimmed"
                     className={classes.description}
@@ -237,17 +275,26 @@ export default function Content() {
                             size="lg"
                             c="dimmed"
                             className={classes.description}>
-                            I'm always open to engaging in meaningful
-                            conversations, whether it's about coding, work, or
-                            any other topic. Don't hesitate to get in touch with
-                            me via social media or shoot me an{" "}
-                            <Text
-                                component="span"
-                                className={classes.highlight}
-                                inherit
-                                c="a">
+                            I&apos;m always open to engaging in meaningful
+                            conversations, whether it&apos;s about coding, work,
+                            or any other topic. Don&apos;t hesitate to get in
+                            touch with me via social media or shoot me an{" "}
+                            <Anchor
+                                href="https://mail.google.com/mail/?view=cm&fs=1&to=gvbpena@gmail.com"
+                                target="_blank"
+                                underline="hover">
                                 Email
-                            </Text>
+                            </Anchor>
+                            <Anchor
+                                href="https://www.facebook.com/messages/t/chatgvp"
+                                target="_blank">
+                                <button>Open Messenger</button>
+                            </Anchor>
+                            {/* <a
+                                href="https://mail.google.com/mail/?view=cm&fs=1&to=gvbpena@gmail.com"
+                                target="_blank">
+                                <Button>Send an Email</Button>
+                            </a> */}
                         </Text>
                     </Container>
                 </div>

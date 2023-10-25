@@ -14,6 +14,12 @@ import {
     rem,
     Box,
     Paper,
+    AspectRatio,
+    Card,
+    Divider,
+    Grid,
+    SimpleGrid,
+    useDirection,
 } from "@mantine/core"
 import {
     IconBrandInstagram,
@@ -22,41 +28,44 @@ import {
     IconListSearch,
     IconMoon,
     IconSun,
+    IconTextDirectionLtr,
+    IconTextDirectionRtl,
 } from "@tabler/icons-react"
 import cx from "clsx"
 import classes from "../styles/Home.module.css"
-import { useEffect, useRef, useState } from "react"
+import { SetStateAction, useEffect, useRef, useState } from "react"
 import Content from "./components/_content"
+import { Link } from "react-scroll"
+import { Carousel } from "@mantine/carousel"
+import { projectData, certificateData } from "./api/_data"
+import { SiGithub } from "react-icons/si"
+import { dir } from "console"
 const links = [
     { label: "About", link: "#About", order: 1 },
-    // { label: "Skills", link: "#Skills", order: 1 },
     { label: "Projects", link: "#Projects", order: 1 },
     { label: "Experiences", link: "#Experience", order: 1 },
     { label: "Certificates", link: "#Certificates", order: 1 },
     { label: "Contacts", link: "#Contact", order: 1 },
 ]
-
-function scrollToProjects(link: string) {
-    const projectsContainer = document.getElementById(link)
-
-    if (projectsContainer) {
+function scrollToElement(elementId: string) {
+    const element = document.getElementById(elementId)
+    if (element) {
         const containerTop =
-            projectsContainer.getBoundingClientRect().top + window.scrollY
+            element.getBoundingClientRect().top + window.scrollY
         window.scrollTo({ top: containerTop, behavior: "smooth" })
     }
 }
 
 export default function FullLayout() {
-    const [active, setActive] = useState("#About")
+    const [active, setActive] = useState(links[0].link)
     const items = links.map((item) => (
-        <Box<"a">
+        // <Link activeClass="active" smooth spy to={item.label}>
+        //     {item.label}
+        // </Link>
+        <Box
             component="a"
             href={item.link}
-            onClick={(event) => {
-                event.preventDefault()
-                setActive(item.link)
-                scrollToProjects(item.label)
-            }}
+            onClick={(event) => handleLinkClick(event, item)}
             key={item.label}
             className={cx(classes.link, {
                 [classes.linkActive]: active === item.link,
@@ -67,21 +76,32 @@ export default function FullLayout() {
             {item.label}
         </Box>
     ))
+    const handleLinkClick = (
+        event: { preventDefault: () => void },
+        item: { link: SetStateAction<string>; label: any }
+    ) => {
+        event.preventDefault()
+        scrollToElement(item.label)
+        // setActive(item.link)
+    }
     const [opened, { toggle }] = useDisclosure(false)
     const { setColorScheme } = useMantineColorScheme()
     const computedColorScheme = useComputedColorScheme("light", {
         getInitialValueInEffect: true,
     })
-    const handleScroll = () => {
-        const containers = [
-            { id: "About", link: "#About" },
-            // { id: "Skills", link: "#Skills" },
-            { id: "Experiences", link: "#Experience" }, // Corrected to "Experiences"
-            { id: "Projects", link: "#Projects" },
-            { id: "Certificates", link: "#Certificates" },
-            { id: "Contacts", link: "#Contact" }, // Corrected to "Contact"
-        ]
+    function isElementInCenter(elementId: string) {
+        const element = document.getElementById(elementId)
+        if (!element) return false
+        const rect = element.getBoundingClientRect()
+        const windowHeight = window.innerHeight
+        const elementCenter = rect.top + rect.height / 2
+        return (
+            elementCenter >= windowHeight / 2 &&
+            elementCenter <= windowHeight / 2 + windowHeight / 2
+        )
+    }
 
+    const handleScroll = () => {
         const scrollPosition = window.scrollY
         const windowHeight = window.innerHeight
         if (scrollPosition <= windowHeight / 10) {
@@ -90,35 +110,37 @@ export default function FullLayout() {
         }
         if (
             scrollPosition + windowHeight >=
-            document.body.scrollHeight - windowHeight / 10
+            document.body.scrollHeight - windowHeight / 100
         ) {
             setActive("#Contact")
             return
         }
-        for (const container of containers) {
-            if (isElementInCenter(container.id)) {
-                setActive(container.link)
+        for (const item of links) {
+            if (isElementInCenter(item.label)) {
+                setActive(item.link)
+                return
             }
         }
     }
-
-    const isElementInCenter = (elementId: string) => {
-        const element = document.getElementById(elementId)
-        if (!element) return false
-        const rect = element.getBoundingClientRect()
-        const windowHeight = window.innerHeight
-
-        return rect.top <= windowHeight / 2 && rect.bottom >= windowHeight / 2
-    }
-
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll)
+        // Use requestAnimationFrame for smoother performance
+        let ticking = false
+        const handleScrollWithRAF = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    handleScroll()
+                    ticking = false
+                })
+                ticking = true
+            }
+        }
+        window.addEventListener("scroll", handleScrollWithRAF)
 
         return () => {
-            window.removeEventListener("scroll", handleScroll)
+            window.removeEventListener("scroll", handleScrollWithRAF)
         }
-    }, [handleScroll])
-
+    }, [])
+    const { toggleDirection, dir } = useDirection()
     return (
         <AppShell
             header={{ height: 60 }}
@@ -128,11 +150,11 @@ export default function FullLayout() {
             //     breakpoint: "sm",
             //     collapsed: { mobile: !opened },
             // }}
-            aside={{
-                width: 200,
-                breakpoint: "md",
-                collapsed: { desktop: false, mobile: true },
-            }}
+            // aside={{
+            //     width: 200,
+            //     breakpoint: "md",
+            //     collapsed: { desktop: false, mobile: true },
+            // }}
             padding="md">
             <AppShell.Header>
                 <Container>
@@ -142,13 +164,26 @@ export default function FullLayout() {
                         hiddenFrom="sm"
                         size="sm"
                     />
-                    <Group justify="space-between">
-                        <Title>This is Logo</Title>{" "}
+                    <Group justify="space-between" mt="sm">
+                        <Title fz="xl">Gvpeña</Title>{" "}
                         <Group>
-                            <Button variant="default">Third</Button>
-                            <Button variant="default">Third</Button>
-                            <Button variant="default">Third</Button>
-                            <Button variant="default">Third</Button>
+                            <ActionIcon
+                                onClick={() => toggleDirection()}
+                                variant="default"
+                                radius="md"
+                                size="lg">
+                                {dir === "rtl" ? (
+                                    <IconTextDirectionLtr stroke={1.5} />
+                                ) : (
+                                    <IconTextDirectionRtl stroke={1.5} />
+                                )}
+                            </ActionIcon>
+                            <ActionIcon variant="default" size="lg">
+                                <SiGithub
+                                    style={{ width: rem(24), height: rem(24) }}
+                                    stroke={1}
+                                />
+                            </ActionIcon>
                             <ActionIcon
                                 onClick={() =>
                                     setColorScheme(
@@ -158,16 +193,13 @@ export default function FullLayout() {
                                     )
                                 }
                                 variant="default"
-                                size="xl"
+                                size="lg"
                                 aria-label="Toggle color scheme">
-                                <IconSun
-                                    className={cx(classes.icon, classes.light)}
-                                    stroke={1.5}
-                                />
-                                <IconMoon
-                                    className={cx(classes.icon, classes.dark)}
-                                    stroke={1.5}
-                                />
+                                {computedColorScheme === "light" ? (
+                                    <IconMoon stroke={1} />
+                                ) : (
+                                    <IconSun stroke={1} />
+                                )}
                             </ActionIcon>
                         </Group>
                     </Group>
@@ -189,13 +221,20 @@ export default function FullLayout() {
                     too.
                 </Text>
             </AppShell.Navbar> */}
-            <AppShell.Main>
+            <AppShell.Main style={{ flex: 1 }}>
                 <Content />
             </AppShell.Main>
             <AppShell.Aside p="md" withBorder={false}>
+                <Group mb="md">
+                    <IconListSearch
+                        style={{ width: rem(18), height: rem(18) }}
+                        stroke={1.5}
+                    />
+                    <Text>Table of contents</Text>
+                </Group>
                 {items}
             </AppShell.Aside>
-            <AppShell.Footer p="md">
+            {/* <AppShell.Footer p="md" style={{ marginTop: "auto" }}>
                 <Container className={classes.inner}>
                     <div className={classes.logo}>
                         <Text
@@ -237,7 +276,7 @@ export default function FullLayout() {
                         </ActionIcon>
                     </Group>
                 </Container>
-            </AppShell.Footer>
+            </AppShell.Footer> */}
         </AppShell>
     )
 }
