@@ -25,6 +25,7 @@ import {
     ListItem,
     ThemeIcon,
     Anchor,
+    ActionIcon,
 } from "@mantine/core"
 import classes from "../../styles/Content.module.css"
 import { Carousel } from "@mantine/carousel"
@@ -42,9 +43,13 @@ import {
     SiBootstrap,
     SiCplusplus,
     SiDjango,
+    SiFacebook,
     SiFastapi,
     SiFirebase,
     SiFlutter,
+    SiGithub,
+    SiGmail,
+    SiInstagram,
     SiJavascript,
     SiJquery,
     SiMysql,
@@ -53,6 +58,7 @@ import {
     SiPython,
     SiReact,
 } from "react-icons/si"
+import { motion } from "framer-motion"
 import { IconCircleCheck } from "@tabler/icons-react"
 const techIcons = [
     { icon: <SiNextdotjs />, label: "NextJs" },
@@ -126,6 +132,24 @@ export default function Content() {
     return (
         <>
             <Container py="xl" id="About" pt="xl">
+                <motion.div
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                        hidden: {
+                            scale: 0.8,
+                            opacity: 0,
+                        },
+                        visible: {
+                            scale: 1,
+                            opacity: 1,
+                            transition: {
+                                delay: 0.4,
+                            },
+                        },
+                    }}>
+                    <h1 className="title">Wubba Lubba Dub Dub!</h1>
+                </motion.div>
                 <Title order={2} className={classes.title} my="sm">
                     ABOUT
                 </Title>
@@ -296,6 +320,26 @@ export default function Content() {
                                 <Button>Send an Email</Button>
                             </a> */}
                         </Text>
+                        <Center>
+                            <ActionIcon variant="default" size="lg">
+                                <SiFacebook
+                                    style={{ width: rem(24), height: rem(24) }}
+                                    stroke={1}
+                                />
+                            </ActionIcon>
+                            <ActionIcon variant="default" size="lg">
+                                <SiInstagram
+                                    style={{ width: rem(24), height: rem(24) }}
+                                    stroke={1}
+                                />
+                            </ActionIcon>
+                            <ActionIcon variant="default" size="lg">
+                                <SiGmail
+                                    style={{ width: rem(24), height: rem(24) }}
+                                    stroke={1}
+                                />
+                            </ActionIcon>
+                        </Center>
                     </Container>
                 </div>
             </Container>
