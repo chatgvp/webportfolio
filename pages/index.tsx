@@ -3,19 +3,19 @@ import FullLayout from "./_appShell"
 import { ModalsProvider } from "@mantine/modals"
 
 const theme = createTheme({
-    fontFamily: "Poppins, sans-serif",
+    // fontFamily: "Poppins, sans-serif",
     // fontFamilyMonospace: "Monaco, Courier, monospace",
     // headings: { fontFamily: "Poppins, sans-serif" },
 })
 
 export default function Home() {
     return (
-        <DirectionProvider>
-            <MantineProvider theme={theme}>
-                <ModalsProvider>
-                    <FullLayout />
-                </ModalsProvider>
-            </MantineProvider>
-        </DirectionProvider>
+        // <DirectionProvider>
+        <MantineProvider theme={theme}>
+            <ModalsProvider>
+                <FullLayout />
+            </ModalsProvider>
+        </MantineProvider>
+        // </DirectionProvider>
     )
 }

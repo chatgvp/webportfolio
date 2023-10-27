@@ -31,6 +31,7 @@ import {
     IconTextDirectionLtr,
     IconTextDirectionRtl,
 } from "@tabler/icons-react"
+import { motion, AnimatePresence } from "framer-motion"
 import cx from "clsx"
 import classes from "../styles/Home.module.css"
 import { SetStateAction, useEffect, useRef, useState } from "react"
@@ -55,8 +56,26 @@ function scrollToElement(elementId: string) {
         window.scrollTo({ top: containerTop, behavior: "smooth" })
     }
 }
+const itemss = [
+    {
+        id: 1,
+        title: "Item 1",
+        subtitle: "Subtitle 1",
+    },
+    {
+        id: 2,
+        title: "Item 2",
+        subtitle: "Subtitle 2",
+    },
+    {
+        id: 3,
+        title: "Item 3",
+        subtitle: "Subtitle 3",
+    },
+]
 
 export default function FullLayout() {
+    const [selectedId, setSelectedId] = useState<number | null>(null)
     const [active, setActive] = useState(links[0].link)
     const items = links.map((item) => (
         // <Link activeClass="active" smooth spy to={item.label}>
@@ -123,7 +142,6 @@ export default function FullLayout() {
         }
     }
     useEffect(() => {
-        // Use requestAnimationFrame for smoother performance
         let ticking = false
         const handleScrollWithRAF = () => {
             if (!ticking) {
@@ -142,20 +160,7 @@ export default function FullLayout() {
     }, [])
     const { toggleDirection, dir } = useDirection()
     return (
-        <AppShell
-            header={{ height: 60 }}
-            footer={{ height: 60 }}
-            // navbar={{
-            //     width: 400,
-            //     breakpoint: "sm",
-            //     collapsed: { mobile: !opened },
-            // }}
-            // aside={{
-            //     width: 200,
-            //     breakpoint: "md",
-            //     collapsed: { desktop: false, mobile: true },
-            // }}
-            padding="md">
+        <AppShell header={{ height: 60 }} padding="md">
             <AppShell.Header>
                 <Container>
                     <Burger
@@ -222,6 +227,41 @@ export default function FullLayout() {
                 </Text>
             </AppShell.Navbar> */}
             <AppShell.Main style={{ flex: 1 }}>
+                <div>
+                    {itemss.map((item) => (
+                        <motion.div
+                            key={item.id}
+                            layoutId={item.id.toString()}
+                            onClick={() => setSelectedId(item.id)}
+                            className="item">
+                            <motion.h5>{item.subtitle}</motion.h5>
+                            <motion.h2>{item.title}</motion.h2>
+                        </motion.div>
+                    ))}
+                    <AnimatePresence>
+                        {selectedId !== null && (
+                            <motion.div
+                                key={selectedId}
+                                layoutId={selectedId.toString()}
+                                className="expanded-item">
+                                {itemss[selectedId - 1] && (
+                                    <>
+                                        <motion.h5>
+                                            {itemss[selectedId - 1].subtitle}
+                                        </motion.h5>
+                                        <motion.h2>
+                                            {itemss[selectedId - 1].title}
+                                        </motion.h2>
+                                    </>
+                                )}
+                                <motion.button
+                                    onClick={() => setSelectedId(null)}>
+                                    Close
+                                </motion.button>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
                 <Content />
             </AppShell.Main>
             <AppShell.Aside p="md" withBorder={false}>
@@ -234,49 +274,6 @@ export default function FullLayout() {
                 </Group>
                 {items}
             </AppShell.Aside>
-            {/* <AppShell.Footer p="md" style={{ marginTop: "auto" }}>
-                <Container className={classes.inner}>
-                    <div className={classes.logo}>
-                        <Text
-                            size="xs"
-                            c="dimmed"
-                            className={classes.description}>
-                            Build fully functional accessible web applications
-                            faster than ever
-                        </Text>
-                    </div>
-                </Container>
-                <Container className={classes.afterFooter}>
-                    <Text c="dimmed" size="sm">
-                        © 2020 mantine.dev. All rights reserved.
-                    </Text>
-
-                    <Group
-                        gap={0}
-                        className={classes.social}
-                        justify="flex-end"
-                        wrap="nowrap">
-                        <ActionIcon size="lg" color="gray" variant="subtle">
-                            <IconBrandTwitter
-                                style={{ width: rem(18), height: rem(18) }}
-                                stroke={1.5}
-                            />
-                        </ActionIcon>
-                        <ActionIcon size="lg" color="gray" variant="subtle">
-                            <IconBrandYoutube
-                                style={{ width: rem(18), height: rem(18) }}
-                                stroke={1.5}
-                            />
-                        </ActionIcon>
-                        <ActionIcon size="lg" color="gray" variant="subtle">
-                            <IconBrandInstagram
-                                style={{ width: rem(18), height: rem(18) }}
-                                stroke={1.5}
-                            />
-                        </ActionIcon>
-                    </Group>
-                </Container>
-            </AppShell.Footer> */}
         </AppShell>
     )
 }

@@ -58,7 +58,7 @@ import {
     SiPython,
     SiReact,
 } from "react-icons/si"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { IconCircleCheck } from "@tabler/icons-react"
 const techIcons = [
     { icon: <SiNextdotjs />, label: "NextJs" },
@@ -184,7 +184,7 @@ export default function Content() {
                     fz="lg"
                     ta="center"
                     mt="md">
-                    In my learning journey, I've gained experience in web
+                    In my learning journey, I&apos;ve gained experience in web
                     development and mobile app development, working on a variety
                     of projects that involve API integration, CSS design, and
                     database management.
@@ -211,20 +211,30 @@ export default function Content() {
 
                                     <SimpleGrid cols={3}>
                                         {project.tech.map((tech, index) => (
-                                            <SimpleGrid cols={3}>
-                                                <Text c="dimmed" fz="lg">
-                                                    {tech}
-                                                </Text>
-                                            </SimpleGrid>
+                                            <Text
+                                                c="dimmed"
+                                                fz="lg"
+                                                key={index}>
+                                                {tech}
+                                            </Text>
                                         ))}
                                     </SimpleGrid>
                                 </Grid.Col>
                                 <Grid.Col span={7}>
-                                    <Carousel
+                                    {project.images[0] && (
+                                        <Image
+                                            height="300vh"
+                                            src={project.images[0]}
+                                            alt={`${project.images[0]} 0`}
+                                            className={`${classes.image}`}
+                                        />
+                                    )}
+
+                                    {/* <Carousel
                                         slideGap="xl"
                                         draggable={false}
                                         withIndicators
-                                        className={`${classes.carousel}`} // Add classes for custom styling
+                                        className={`${classes.carousel}`}
                                     >
                                         {project.images.map(
                                             (image, imageIndex) => (
@@ -235,12 +245,12 @@ export default function Content() {
                                                         height="300vh"
                                                         src={image}
                                                         alt={`${image} ${imageIndex}`}
-                                                        className={`${classes.image}`} // Add classes for custom styling
+                                                        className={`${classes.image}`}
                                                     />
                                                 </Carousel.Slide>
                                             )
                                         )}
-                                    </Carousel>
+                                    </Carousel> */}
                                 </Grid.Col>
                             </Grid>
                         </Grid.Col>
