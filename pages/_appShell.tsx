@@ -101,7 +101,6 @@ export default function FullLayout() {
     ) => {
         event.preventDefault()
         scrollToElement(item.label)
-        // setActive(item.link)
     }
     const [opened, { toggle }] = useDisclosure(false)
     const { setColorScheme } = useMantineColorScheme()
@@ -227,41 +226,6 @@ export default function FullLayout() {
                 </Text>
             </AppShell.Navbar> */}
             <AppShell.Main style={{ flex: 1 }}>
-                <div>
-                    {itemss.map((item) => (
-                        <motion.div
-                            key={item.id}
-                            layoutId={item.id.toString()}
-                            onClick={() => setSelectedId(item.id)}
-                            className="item">
-                            <motion.h5>{item.subtitle}</motion.h5>
-                            <motion.h2>{item.title}</motion.h2>
-                        </motion.div>
-                    ))}
-                    <AnimatePresence>
-                        {selectedId !== null && (
-                            <motion.div
-                                key={selectedId}
-                                layoutId={selectedId.toString()}
-                                className="expanded-item">
-                                {itemss[selectedId - 1] && (
-                                    <>
-                                        <motion.h5>
-                                            {itemss[selectedId - 1].subtitle}
-                                        </motion.h5>
-                                        <motion.h2>
-                                            {itemss[selectedId - 1].title}
-                                        </motion.h2>
-                                    </>
-                                )}
-                                <motion.button
-                                    onClick={() => setSelectedId(null)}>
-                                    Close
-                                </motion.button>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </div>
                 <Content />
             </AppShell.Main>
             <AppShell.Aside p="md" withBorder={false}>

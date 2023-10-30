@@ -7,15 +7,15 @@ const theme = createTheme({
     // fontFamilyMonospace: "Monaco, Courier, monospace",
     // headings: { fontFamily: "Poppins, sans-serif" },
 })
-
+import { motion, AnimatePresence } from "framer-motion"
 export default function Home() {
     return (
-        // <DirectionProvider>
-        <MantineProvider theme={theme}>
-            <ModalsProvider>
-                <FullLayout />
-            </ModalsProvider>
-        </MantineProvider>
-        // </DirectionProvider>
+        <DirectionProvider>
+            <MantineProvider theme={theme}>
+                <ModalsProvider>
+                    <FullLayout />
+                </ModalsProvider>
+            </MantineProvider>
+        </DirectionProvider>
     )
 }

@@ -58,8 +58,11 @@ import {
     SiPython,
     SiReact,
 } from "react-icons/si"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useInView, useAnimation } from "framer-motion"
 import { IconCircleCheck } from "@tabler/icons-react"
+import Aos from "aos"
+import "aos/dist/aos"
+// import ScrollAnimation from "react-animate-on-scroll"
 const techIcons = [
     { icon: <SiNextdotjs />, label: "NextJs" },
     { icon: <SiReact />, label: "ReactJs" },
@@ -129,23 +132,37 @@ export default function Content() {
             </div>
         </Tabs>
     )
+    useEffect(() => {
+        Aos.init({ duration: 1000 })
+        if (isInView) {
+            mainControls.start("visible")
+        }
+    }, [])
+    const mainControls = useAnimation()
+    const ref = useRef(null)
+    const isInView = useInView(ref, { once: true })
+
     return (
         <>
-            <Container py="xl" id="About" pt="xl">
+            <Container
+                py="xl"
+                id="About"
+                pt="xl"
+                ref={ref}
+                data-aos="fade-down">
+                {/* <ScrollAnimation animateIn="fadeIn">Some Text</ScrollAnimation> */}
                 <motion.div
                     initial="hidden"
                     animate="visible"
+                    transition={{ duration: 0.5, delay: 0.25 }}
                     variants={{
                         hidden: {
-                            scale: 0.8,
                             opacity: 0,
+                            y: 75,
                         },
                         visible: {
-                            scale: 1,
                             opacity: 1,
-                            transition: {
-                                delay: 0.4,
-                            },
+                            y: 0,
                         },
                     }}>
                     <h1 className="title">Wubba Lubba Dub Dub!</h1>
@@ -173,7 +190,7 @@ export default function Content() {
                     <Avatar radius="xl" size={200} />
                 </Group>
             </Container>
-            <Container py="xl" id="Projects">
+            <Container py="xl" id="Projects" data-aos="fade-down">
                 <Title order={2} className={classes.title} ta="center" my="sm">
                     PORJECTS
                 </Title>
