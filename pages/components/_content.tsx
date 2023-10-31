@@ -30,6 +30,7 @@ import {
 import classes from "../../styles/Content.module.css"
 import { Carousel } from "@mantine/carousel"
 import "@mantine/carousel/styles.css"
+import { RiShareBoxLine } from "react-icons/ri"
 import {
     mockdata,
     Experience,
@@ -41,28 +42,174 @@ import { modals } from "@mantine/modals"
 import {
     SiBookstack,
     SiBootstrap,
+    SiC,
     SiCplusplus,
+    SiCss3,
     SiDjango,
     SiFacebook,
     SiFastapi,
     SiFirebase,
     SiFlutter,
+    SiFramer,
+    SiGit,
     SiGithub,
     SiGmail,
+    SiHtml5,
     SiInstagram,
     SiJavascript,
     SiJquery,
     SiMysql,
     SiNextdotjs,
+    SiOpenai,
     SiPhp,
+    SiPostman,
     SiPython,
     SiReact,
+    SiSharex,
+    SiTypescript,
+    SiVisualstudio,
+    SiXampp,
+    SiDiscord,
+    SiLinkedin,
 } from "react-icons/si"
+import { PiHandWavingBold } from "react-icons/pi"
 import { motion, AnimatePresence, useInView, useAnimation } from "framer-motion"
 import { IconCircleCheck } from "@tabler/icons-react"
 import Aos from "aos"
 import "aos/dist/aos"
+import { FaJava } from "react-icons/fa"
+import { TbBrandMantine } from "react-icons/tb"
 // import ScrollAnimation from "react-animate-on-scroll"
+import { useScrollIntoView } from "@mantine/hooks"
+interface TechIcon {
+    icon: JSX.Element
+    label: string
+}
+
+interface TechIcons {
+    [key: string]: TechIcon[]
+}
+
+// const createBlueIcon = (IconComponent) => {
+//     return <IconComponent style={{ fill: "#099CFF" }} />
+// }
+const techIconss: TechIcons = {
+    "Frontend Centric": [
+        {
+            icon: <SiNextdotjs />,
+            label: "NextJs",
+        },
+        {
+            icon: <SiReact style={{ fill: "#61dafb" }} />,
+            label: "ReactJs",
+        },
+        {
+            icon: <SiJquery style={{ fill: "blue" }} />,
+            label: "jQuery",
+        },
+    ],
+    "Backend Centric": [
+        {
+            icon: <SiDjango style={{ fill: "#049284" }} />,
+            label: "Django",
+        },
+        {
+            icon: <SiFastapi style={{ fill: "#049284" }} />,
+            label: "Fast API",
+        },
+        {
+            icon: <SiPhp style={{ fill: "#5866A5" }} />,
+            label: "PHP",
+        },
+    ],
+    Database: [
+        {
+            icon: <SiMysql />,
+            label: "MySQL",
+        },
+        {
+            icon: <SiFirebase style={{ fill: "orange" }} />,
+            label: "Firebase",
+        },
+    ],
+    "User Interface": [
+        {
+            icon: <SiHtml5 style={{ fill: "orange" }} />,
+            label: "HTML",
+        },
+        {
+            icon: <SiCss3 style={{ fill: "#099CFF" }} />,
+            label: "CSS",
+        },
+        {
+            icon: <SiBootstrap style={{ fill: "purple" }} />,
+            label: "Bootstrap",
+        },
+        {
+            icon: <SiFramer />,
+            label: "Framer Motion",
+        },
+        {
+            icon: <TbBrandMantine />,
+            label: "Mantine",
+        },
+    ],
+    "Mobile Development": [
+        {
+            icon: <SiFlutter style={{ fill: "#02569B" }} />,
+            label: "Flutter",
+        },
+    ],
+    "Programming Languages": [
+        {
+            icon: <SiJavascript style={{ fill: "#f7df1e" }} />,
+            label: "JavaScript",
+        },
+        {
+            icon: <SiTypescript style={{ fill: "#3178c6" }} />,
+            label: "TypeScript",
+        },
+        {
+            icon: <SiCplusplus style={{ fill: "#00599c" }} />,
+            label: "C++",
+        },
+        {
+            icon: <SiC style={{ fill: "#555555" }} />,
+            label: "C",
+        },
+        {
+            icon: <SiPython style={{ fill: "#306998" }} />,
+            label: "Python",
+        },
+        {
+            icon: <FaJava style={{ fill: "#007396" }} />,
+            label: "Java",
+        },
+    ],
+    Tools: [
+        {
+            icon: <SiXampp style={{ fill: "#fb7a24" }} />,
+            label: "Xampp",
+        },
+        {
+            icon: <SiGit style={{ fill: "#f1502f" }} />,
+            label: "Git",
+        },
+        {
+            icon: <SiPostman style={{ fill: "#ff6c37" }} />,
+            label: "Postman",
+        },
+        {
+            icon: <SiOpenai style={{ fill: "#049284" }} />,
+            label: "Openai",
+        },
+        {
+            icon: <SiVisualstudio style={{ fill: "#0078d7" }} />,
+            label: "VScode",
+        },
+    ],
+}
+
 const techIcons = [
     { icon: <SiNextdotjs />, label: "NextJs" },
     { icon: <SiReact />, label: "ReactJs" },
@@ -70,7 +217,7 @@ const techIcons = [
     { icon: <SiFastapi />, label: "Fast API" },
     { icon: <SiBootstrap />, label: "Bootstrap" },
     { icon: <SiFlutter />, label: "Flutter" },
-    { icon: <SiJavascript />, label: "javascript" },
+    { icon: <SiJavascript />, label: "Javascript" },
     { icon: <SiPhp />, label: "PHP" },
     { icon: <SiPython />, label: "Python" },
     { icon: <SiMysql />, label: "Mysql" },
@@ -78,6 +225,9 @@ const techIcons = [
     { icon: <SiJquery />, label: "Jquery" },
 ]
 export default function Content() {
+    const { scrollIntoView, targetRef } = useScrollIntoView<HTMLDivElement>({
+        offset: 60,
+    })
     const IconWithLabel = techIcons.map((item, index) => (
         <Text mt={10} key={index} fz="lg">
             {item.icon} {item.label}
@@ -104,9 +254,7 @@ export default function Content() {
                             <b>{experience.description.title}</b>
                         </h4>
                         <b>{experience.name}</b>
-                        <Text c="dimmed" fz="lg">
-                            {experience.date}
-                        </Text>
+                        <Text c="dimmed">{experience.date}</Text>
                         <Container size="sm">
                             <List
                                 type="ordered"
@@ -120,7 +268,7 @@ export default function Content() {
                                 }>
                                 {experience.description.subdescription.map(
                                     (subDesc, subIndex) => (
-                                        <List.Item key={subIndex} fz="lg">
+                                        <List.Item key={subIndex}>
                                             {subDesc.text}
                                         </List.Item>
                                     )
@@ -132,75 +280,160 @@ export default function Content() {
             </div>
         </Tabs>
     )
-    useEffect(() => {
-        Aos.init({ duration: 1000 })
-        if (isInView) {
-            mainControls.start("visible")
-        }
-    }, [])
-    const mainControls = useAnimation()
-    const ref = useRef(null)
-    const isInView = useInView(ref, { once: true })
 
     return (
         <>
-            <Container
-                py="xl"
-                id="About"
-                pt="xl"
-                ref={ref}
-                data-aos="fade-down">
-                {/* <ScrollAnimation animateIn="fadeIn">Some Text</ScrollAnimation> */}
-                <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ duration: 0.5, delay: 0.25 }}
-                    variants={{
-                        hidden: {
-                            opacity: 0,
-                            y: 75,
-                        },
-                        visible: {
-                            opacity: 1,
-                            y: 0,
-                        },
-                    }}>
-                    <h1 className="title">Wubba Lubba Dub Dub!</h1>
-                </motion.div>
-                <Title order={2} className={classes.title} my="sm">
-                    ABOUT
-                </Title>
-                <Divider></Divider>
-                <Group grow wrap="nowrap" py="lg">
-                    <div>
-                        <Text fz="lg">
-                            I am <b>George Vincent Peña</b>, a passionated web
-                            developer who enjoys problem-solving and building
-                            programming applications. I&apos;m excited to learn
-                            and grow, confidently progressing on this journey.
+            <Container id="About" py="xl" my="xl" size="lg">
+                <h1 style={{ fontSize: "60px" }} className="titlefont">
+                    Hello, I'm{" "}
+                    <Text
+                        size="xl"
+                        component="span"
+                        variant="gradient"
+                        gradient={{ from: "blue", to: "cyan" }}
+                        inherit>
+                        George Vincent Peña
+                    </Text>{" "}
+                </h1>
+                <Text>
+                    A passionated <b>software developer</b> who enjoys
+                    problem-solving and building programming applications.
+                    I&apos;m excited to learn and grow, confidently progressing
+                    on this journey.
+                </Text>
+                <br />
+                <Button
+                    onClick={() =>
+                        scrollIntoView({
+                            alignment: "center",
+                        })
+                    }>
+                    Say Hello <PiHandWavingBold />
+                </Button>
+                <Grid gutter="xl">
+                    <Grid.Col span={10}></Grid.Col>
+                    <Grid.Col span={2}>
+                        <Title order={1} my="sm">
+                            <p className="titlefont">ABOUT.</p>
+                        </Title>
+                    </Grid.Col>
+                </Grid>
+                <Divider />
+                <Grid grow my="xl">
+                    <Grid.Col span={6}>
+                        <Text my="sm">
+                            In 2017, I was introduced to programming, and from
+                            that moment, my genuine interest was sparked. Over
+                            time, this interest evolved into a dedicated
+                            professional pursuit.
                         </Text>
-                        <br />
-                        <Text fz="lg">
-                            Here are some Technnology im familar with
+                        <Text my="sm">
+                            Here are some <b>Technnologies</b> that im familar
+                            with
                         </Text>
-                        <SimpleGrid cols={4} spacing="xs" verticalSpacing="xs">
-                            {IconWithLabel}
+                        <SimpleGrid cols={2} spacing="xs" verticalSpacing="xs">
+                            <Group>
+                                {techIconss["Frontend Centric"][0].icon}
+                                <Text c="dimmed">
+                                    {techIconss["Frontend Centric"][0].label}
+                                </Text>
+                            </Group>
+                            <Group>
+                                {techIconss["Frontend Centric"][1].icon}
+
+                                <Text c="dimmed">
+                                    {techIconss["Frontend Centric"][1].label}
+                                </Text>
+                            </Group>
+                            <Group>
+                                {techIconss["Backend Centric"][0].icon}
+
+                                <Text c="dimmed">
+                                    {techIconss["Backend Centric"][0].label}
+                                </Text>
+                            </Group>
+                            <Group>
+                                {techIconss["Database"][0].icon}
+
+                                <Text c="dimmed">
+                                    {techIconss["Database"][0].label}
+                                </Text>
+                            </Group>
                         </SimpleGrid>
-                    </div>
-                    <Avatar radius="xl" size={200} />
-                </Group>
+
+                        <br />
+                        <Anchor
+                            onClick={() =>
+                                modals.open({
+                                    title: <b>Full Skill Set List</b>,
+                                    children: (
+                                        <>
+                                            {Object.keys(techIconss).map(
+                                                (category, index) => (
+                                                    <div key={index}>
+                                                        <Text fz="lg" fw={700}>
+                                                            {category}
+                                                        </Text>
+                                                        <Divider />
+                                                        <SimpleGrid
+                                                            p="md"
+                                                            cols={2}
+                                                            spacing="xs"
+                                                            verticalSpacing="xs">
+                                                            {techIconss[
+                                                                category
+                                                            ].map((item) => (
+                                                                <Text
+                                                                    key={index}
+                                                                    style={{
+                                                                        display:
+                                                                            "flex",
+                                                                        alignItems:
+                                                                            "center",
+                                                                    }}>
+                                                                    {item.icon}{" "}
+                                                                    <Text
+                                                                        c="dimmed"
+                                                                        ml={4}>
+                                                                        {
+                                                                            item.label
+                                                                        }
+                                                                    </Text>
+                                                                </Text>
+                                                            ))}
+                                                        </SimpleGrid>
+                                                    </div>
+                                                )
+                                            )}
+                                        </>
+                                    ),
+                                })
+                            }>
+                            View full Arsenal <RiShareBoxLine />
+                        </Anchor>
+                    </Grid.Col>
+                    <Grid.Col span={6}>
+                        <Avatar
+                            src="https://scontent.fmnl9-3.fna.fbcdn.net/v/t1.18169-9/29375_114527412046652_599135455_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=b9145c&_nc_ohc=D6cHqGl78UQAX85z-a-&_nc_ht=scontent.fmnl9-3.fna&oh=00_AfC3E07QRnRVa5h8dWUnPz06F3dD188fGjyqkZWQj7Qwtw&oe=6567E31D"
+                            size={300} // Set the size to "100%" to maximize the available space
+                            radius={120}
+                            mx="auto"
+                        />
+                    </Grid.Col>
+                </Grid>
             </Container>
-            <Container py="xl" id="Projects" data-aos="fade-down">
-                <Title order={2} className={classes.title} ta="center" my="sm">
-                    PORJECTS
-                </Title>
-                <Divider></Divider>
-                <Text
-                    c="dimmed"
-                    // className={classes.description}
-                    fz="lg"
-                    ta="center"
-                    mt="md">
+            <Container id="Projects" py="xl" my="xl" size="lg">
+                <Grid gutter="xl">
+                    <Grid.Col span={3}>
+                        <Title order={1} my="sm">
+                            <p className="titlefont">PORJECTS.</p>
+                        </Title>
+                    </Grid.Col>
+                    <Grid.Col span={9}></Grid.Col>
+                </Grid>
+                <Divider />
+
+                <Text c="dimmed" mt="md">
                     In my learning journey, I&apos;ve gained experience in web
                     development and mobile app development, working on a variety
                     of projects that involve API integration, CSS design, and
@@ -211,48 +444,47 @@ export default function Content() {
                         <Grid.Col span={12} key={index} my="xl">
                             <Grid>
                                 <Grid.Col span={5}>
-                                    <Title order={5} my="sm" fw={800}>
-                                        {project.title}
+                                    <Title order={4} my="sm">
+                                        <p
+                                            className="titlefont"
+                                            // style={{ color: "#099CFF" }}
+                                        >
+                                            {project.title}
+                                        </p>
                                     </Title>
                                     <Text
                                         c="dimmed"
-                                        fz="lg"
-                                        fw={500}
                                         className={classes.cardTitle}
                                         mt="md">
                                         {project.description}
                                     </Text>
-                                    <Text fz="lg" fw={700} py="sm">
+                                    <Text fw={700} py="sm">
                                         Technology used in this project
                                     </Text>
 
                                     <SimpleGrid cols={3}>
                                         {project.tech.map((tech, index) => (
-                                            <Text
-                                                c="dimmed"
-                                                fz="lg"
-                                                key={index}>
+                                            <Text c="dimmed" key={index}>
                                                 {tech}
                                             </Text>
                                         ))}
                                     </SimpleGrid>
                                 </Grid.Col>
                                 <Grid.Col span={7}>
-                                    {project.images[0] && (
+                                    {/* {project.images[0] && (
                                         <Image
                                             height="300vh"
                                             src={project.images[0]}
                                             alt={`${project.images[0]} 0`}
                                             className={`${classes.image}`}
                                         />
-                                    )}
+                                    )} */}
 
-                                    {/* <Carousel
+                                    <Carousel
                                         slideGap="xl"
                                         draggable={false}
                                         withIndicators
-                                        className={`${classes.carousel}`}
-                                    >
+                                        className={`${classes.carousel}`}>
                                         {project.images.map(
                                             (image, imageIndex) => (
                                                 <Carousel.Slide
@@ -267,33 +499,44 @@ export default function Content() {
                                                 </Carousel.Slide>
                                             )
                                         )}
-                                    </Carousel> */}
+                                    </Carousel>
                                 </Grid.Col>
                             </Grid>
                         </Grid.Col>
                     ))}
                 </Grid>
             </Container>
-            <Container py="xl" id="Experiences">
-                <Title order={2} className={classes.title} ta="center" my="sm">
-                    EXPERIENCES
-                </Title>
+            <Container py="xl" id="Experiences" size="lg">
+                <Grid gutter="xl">
+                    <Grid.Col span={9}></Grid.Col>
+                    <Grid.Col span={3}>
+                        <Title order={1} my="sm">
+                            <p className="titlefont">EXPERIENCES.</p>
+                        </Title>
+                    </Grid.Col>
+                </Grid>
+
                 <Divider></Divider>
                 <Text
                     c="dimmed"
                     className={classes.description}
-                    ta="center"
-                    fz="lg"
+                    // ta="center"
+                    // fz="lg"
                     mt="md">
                     Here are some of the experience i have gained in my learning
                     jouney
                 </Text>
                 {Experiences}
             </Container>
-            <Container py="xl" id="Certificates" my="xl">
-                <Title order={2} className={classes.title} ta="center" my="sm">
-                    CERTIFICATES
-                </Title>
+            <Container py="xl" id="Certificates" my="xl" size="lg">
+                <Grid gutter="xl">
+                    <Grid.Col span={3}>
+                        <Title order={1} my="sm">
+                            <p className="titlefont">CERTIFICATES.</p>
+                        </Title>
+                    </Grid.Col>
+                    <Grid.Col span={9}></Grid.Col>
+                </Grid>
                 <Divider></Divider>
                 <Text
                     c="dimmed"
@@ -318,38 +561,36 @@ export default function Content() {
                     ))}
                 </SimpleGrid>
             </Container>
-            <Container className={classes.wrapper} size={1400} id="Contacts">
-                <div className={classes.inner}>
-                    <Title className={classes.title}>Say Hello</Title>
-                    <Container p={0} size={600}>
-                        <Text
-                            size="lg"
-                            c="dimmed"
-                            className={classes.description}>
-                            I&apos;m always open to engaging in meaningful
-                            conversations, whether it&apos;s about coding, work,
-                            or any other topic. Don&apos;t hesitate to get in
-                            touch with me via social media or shoot me an{" "}
-                            <Anchor
-                                href="https://mail.google.com/mail/?view=cm&fs=1&to=gvbpena@gmail.com"
-                                target="_blank"
-                                underline="hover">
-                                Email
-                            </Anchor>
-                            <Anchor
+            <Container size="xl" id="Contacts" my="xl" py="xl" ref={targetRef}>
+                <Title ta="center">
+                    <p className="titlefont">Say Hello</p>
+                </Title>
+                <Container p={0} size="xs">
+                    <Text c="dimmed" ta="center">
+                        I&apos;m always open to engaging in meaningful
+                        conversations, whether it&apos;s about coding, work, or
+                        any other topic. Don&apos;t hesitate to get in touch
+                        with me via{" "}
+                        <Anchor
+                            href="https://mail.google.com/mail/?view=cm&fs=1&to=gvbpena@gmail.com"
+                            target="_blank"
+                            underline="hover">
+                            Email
+                        </Anchor>
+                        {/* <Anchor
                                 href="https://www.facebook.com/messages/t/chatgvp"
                                 target="_blank">
                                 <button>Open Messenger</button>
-                            </Anchor>
-                            {/* <a
+                            </Anchor> */}
+                        {/* <a
                                 href="https://mail.google.com/mail/?view=cm&fs=1&to=gvbpena@gmail.com"
                                 target="_blank">
                                 <Button>Send an Email</Button>
                             </a> */}
-                        </Text>
-                        <Center>
+                    </Text>
+                    {/* <Center>
                             <ActionIcon variant="default" size="lg">
-                                <SiFacebook
+                                <SiLinkedin
                                     style={{ width: rem(24), height: rem(24) }}
                                     stroke={1}
                                 />
@@ -361,14 +602,13 @@ export default function Content() {
                                 />
                             </ActionIcon>
                             <ActionIcon variant="default" size="lg">
-                                <SiGmail
+                                <SiDiscord
                                     style={{ width: rem(24), height: rem(24) }}
                                     stroke={1}
                                 />
                             </ActionIcon>
-                        </Center>
-                    </Container>
-                </div>
+                        </Center> */}
+                </Container>
             </Container>
         </>
     )
