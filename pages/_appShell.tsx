@@ -144,7 +144,7 @@ export default function FullLayout() {
     return (
         <AppShell header={{ height: 60 }} padding="md">
             <AppShell.Header>
-                <Container>
+                <Container size="lg">
                     <Burger
                         opened={opened}
                         onClick={toggle}
@@ -165,18 +165,38 @@ export default function FullLayout() {
                                     <IconTextDirectionRtl stroke={1.5} />
                                 )}
                             </ActionIcon>
-                            <ActionIcon variant="default" size="lg">
+                            <ActionIcon
+                                variant="default"
+                                size="lg"
+                                onClick={() =>
+                                    window.open(
+                                        "https://www.linkedin.com/in/george-vincent-pe%C3%B1a-19842928b/",
+                                        "_blank"
+                                    )
+                                }>
                                 <SiLinkedin
                                     style={{ width: rem(24), height: rem(24) }}
                                     stroke={1}
                                 />
                             </ActionIcon>
-                            <ActionIcon variant="default" size="lg">
+                            <ActionIcon
+                                variant="default"
+                                size="lg"
+                                onClick={() =>
+                                    window.open(
+                                        "https://github.com/chatgvp",
+                                        "_blank"
+                                    )
+                                }>
                                 <SiGithub
-                                    style={{ width: rem(24), height: rem(24) }}
-                                    stroke={1}
+                                    style={{
+                                        width: "24px",
+                                        height: "24px",
+                                        stroke: "1",
+                                    }}
                                 />
                             </ActionIcon>
+
                             <ActionIcon
                                 onClick={() =>
                                     setColorScheme(

@@ -32,10 +32,10 @@ import { Carousel } from "@mantine/carousel"
 import "@mantine/carousel/styles.css"
 import { RiShareBoxLine } from "react-icons/ri"
 import {
-    mockdata,
     Experience,
     projectData,
     certificateData,
+    techIcons,
 } from "../api/_data"
 import { useEffect, useRef } from "react"
 import { modals } from "@mantine/modals"
@@ -72,13 +72,15 @@ import {
     SiDiscord,
     SiLinkedin,
 } from "react-icons/si"
+import { FaJava } from "react-icons/fa"
+import { TbBrandMantine } from "react-icons/tb"
+
 import { PiHandWavingBold } from "react-icons/pi"
 import { motion, AnimatePresence, useInView, useAnimation } from "framer-motion"
 import { IconCircleCheck } from "@tabler/icons-react"
 import Aos from "aos"
 import "aos/dist/aos"
-import { FaJava } from "react-icons/fa"
-import { TbBrandMantine } from "react-icons/tb"
+
 // import ScrollAnimation from "react-animate-on-scroll"
 import { useScrollIntoView } from "@mantine/hooks"
 interface TechIcon {
@@ -89,150 +91,10 @@ interface TechIcon {
 interface TechIcons {
     [key: string]: TechIcon[]
 }
-
-// const createBlueIcon = (IconComponent) => {
-//     return <IconComponent style={{ fill: "#099CFF" }} />
-// }
-const techIconss: TechIcons = {
-    "Frontend Centric": [
-        {
-            icon: <SiNextdotjs />,
-            label: "NextJs",
-        },
-        {
-            icon: <SiReact style={{ fill: "#61dafb" }} />,
-            label: "ReactJs",
-        },
-        {
-            icon: <SiJquery style={{ fill: "blue" }} />,
-            label: "jQuery",
-        },
-    ],
-    "Backend Centric": [
-        {
-            icon: <SiDjango style={{ fill: "#049284" }} />,
-            label: "Django",
-        },
-        {
-            icon: <SiFastapi style={{ fill: "#049284" }} />,
-            label: "Fast API",
-        },
-        {
-            icon: <SiPhp style={{ fill: "#5866A5" }} />,
-            label: "PHP",
-        },
-    ],
-    Database: [
-        {
-            icon: <SiMysql />,
-            label: "MySQL",
-        },
-        {
-            icon: <SiFirebase style={{ fill: "orange" }} />,
-            label: "Firebase",
-        },
-    ],
-    "User Interface": [
-        {
-            icon: <SiHtml5 style={{ fill: "orange" }} />,
-            label: "HTML",
-        },
-        {
-            icon: <SiCss3 style={{ fill: "#099CFF" }} />,
-            label: "CSS",
-        },
-        {
-            icon: <SiBootstrap style={{ fill: "purple" }} />,
-            label: "Bootstrap",
-        },
-        {
-            icon: <SiFramer />,
-            label: "Framer Motion",
-        },
-        {
-            icon: <TbBrandMantine />,
-            label: "Mantine",
-        },
-    ],
-    "Mobile Development": [
-        {
-            icon: <SiFlutter style={{ fill: "#02569B" }} />,
-            label: "Flutter",
-        },
-    ],
-    "Programming Languages": [
-        {
-            icon: <SiJavascript style={{ fill: "#f7df1e" }} />,
-            label: "JavaScript",
-        },
-        {
-            icon: <SiTypescript style={{ fill: "#3178c6" }} />,
-            label: "TypeScript",
-        },
-        {
-            icon: <SiCplusplus style={{ fill: "#00599c" }} />,
-            label: "C++",
-        },
-        {
-            icon: <SiC style={{ fill: "#555555" }} />,
-            label: "C",
-        },
-        {
-            icon: <SiPython style={{ fill: "#306998" }} />,
-            label: "Python",
-        },
-        {
-            icon: <FaJava style={{ fill: "#007396" }} />,
-            label: "Java",
-        },
-    ],
-    Tools: [
-        {
-            icon: <SiXampp style={{ fill: "#fb7a24" }} />,
-            label: "Xampp",
-        },
-        {
-            icon: <SiGit style={{ fill: "#f1502f" }} />,
-            label: "Git",
-        },
-        {
-            icon: <SiPostman style={{ fill: "#ff6c37" }} />,
-            label: "Postman",
-        },
-        {
-            icon: <SiOpenai style={{ fill: "#049284" }} />,
-            label: "Openai",
-        },
-        {
-            icon: <SiVisualstudio style={{ fill: "#0078d7" }} />,
-            label: "VScode",
-        },
-    ],
-}
-
-const techIcons = [
-    { icon: <SiNextdotjs />, label: "NextJs" },
-    { icon: <SiReact />, label: "ReactJs" },
-    { icon: <SiDjango />, label: "Django" },
-    { icon: <SiFastapi />, label: "Fast API" },
-    { icon: <SiBootstrap />, label: "Bootstrap" },
-    { icon: <SiFlutter />, label: "Flutter" },
-    { icon: <SiJavascript />, label: "Javascript" },
-    { icon: <SiPhp />, label: "PHP" },
-    { icon: <SiPython />, label: "Python" },
-    { icon: <SiMysql />, label: "Mysql" },
-    { icon: <SiFirebase />, label: "Firebase" },
-    { icon: <SiJquery />, label: "Jquery" },
-]
 export default function Content() {
     const { scrollIntoView, targetRef } = useScrollIntoView<HTMLDivElement>({
         offset: 60,
     })
-    const IconWithLabel = techIcons.map((item, index) => (
-        <Text mt={10} key={index} fz="lg">
-            {item.icon} {item.label}
-        </Text>
-    ))
     const Experiences = (
         <Tabs defaultValue="0" orientation="vertical">
             <Tabs.List>
@@ -283,7 +145,14 @@ export default function Content() {
 
     return (
         <>
-            <Container id="About" py="xl" my="xl" size="lg">
+            <Container
+                id="About"
+                size="lg"
+                style={{
+                    height: "100vh",
+                    paddingTop: "50px",
+                }}
+                mt="xl">
                 <h1 style={{ fontSize: "60px" }} className="titlefont">
                     Hello, I'm{" "}
                     <Text
@@ -294,6 +163,9 @@ export default function Content() {
                         inherit>
                         George Vincent Peña
                     </Text>{" "}
+                    {/* <div className="center-container">
+                        <div className="center"></div>{" "}
+                    </div> */}
                 </h1>
                 <Text>
                     A passionated <b>software developer</b> who enjoys
@@ -333,30 +205,30 @@ export default function Content() {
                         </Text>
                         <SimpleGrid cols={2} spacing="xs" verticalSpacing="xs">
                             <Group>
-                                {techIconss["Frontend Centric"][0].icon}
+                                {techIcons["Frontend Centric"][0].icon}
                                 <Text c="dimmed">
-                                    {techIconss["Frontend Centric"][0].label}
+                                    {techIcons["Frontend Centric"][0].label}
                                 </Text>
                             </Group>
                             <Group>
-                                {techIconss["Frontend Centric"][1].icon}
+                                {techIcons["Frontend Centric"][1].icon}
 
                                 <Text c="dimmed">
-                                    {techIconss["Frontend Centric"][1].label}
+                                    {techIcons["Frontend Centric"][1].label}
                                 </Text>
                             </Group>
                             <Group>
-                                {techIconss["Backend Centric"][0].icon}
+                                {techIcons["Backend Centric"][0].icon}
 
                                 <Text c="dimmed">
-                                    {techIconss["Backend Centric"][0].label}
+                                    {techIcons["Backend Centric"][0].label}
                                 </Text>
                             </Group>
                             <Group>
-                                {techIconss["Database"][0].icon}
+                                {techIcons["Database"][0].icon}
 
                                 <Text c="dimmed">
-                                    {techIconss["Database"][0].label}
+                                    {techIcons["Database"][0].label}
                                 </Text>
                             </Group>
                         </SimpleGrid>
@@ -368,7 +240,7 @@ export default function Content() {
                                     title: <b>Full Skill Set List</b>,
                                     children: (
                                         <>
-                                            {Object.keys(techIconss).map(
+                                            {Object.keys(techIcons).map(
                                                 (category, index) => (
                                                     <div key={index}>
                                                         <Text fz="lg" fw={700}>
@@ -380,7 +252,7 @@ export default function Content() {
                                                             cols={2}
                                                             spacing="xs"
                                                             verticalSpacing="xs">
-                                                            {techIconss[
+                                                            {techIcons[
                                                                 category
                                                             ].map((item) => (
                                                                 <Text
@@ -426,7 +298,7 @@ export default function Content() {
                 <Grid gutter="xl">
                     <Grid.Col span={3}>
                         <Title order={1} my="sm">
-                            <p className="titlefont">PORJECTS.</p>
+                            <p className="titlefont">PROJECTS.</p>
                         </Title>
                     </Grid.Col>
                     <Grid.Col span={9}></Grid.Col>
@@ -443,12 +315,9 @@ export default function Content() {
                     {projectData.map((project, index) => (
                         <Grid.Col span={12} key={index} my="xl">
                             <Grid>
-                                <Grid.Col span={5}>
+                                <Grid.Col span={5} p="lg">
                                     <Title order={4} my="sm">
-                                        <p
-                                            className="titlefont"
-                                            // style={{ color: "#099CFF" }}
-                                        >
+                                        <p className="titlefont">
                                             {project.title}
                                         </p>
                                     </Title>
@@ -461,26 +330,49 @@ export default function Content() {
                                     <Text fw={700} py="sm">
                                         Technology used in this project
                                     </Text>
-
                                     <SimpleGrid cols={3}>
                                         {project.tech.map((tech, index) => (
                                             <Text c="dimmed" key={index}>
-                                                {tech}
+                                                <Group>
+                                                    {tech.icon}
+                                                    {tech.label}
+                                                </Group>
                                             </Text>
                                         ))}
                                     </SimpleGrid>
+                                    <Group my="xl">
+                                        <Button
+                                            variant="outline"
+                                            color="gray"
+                                            // leftSection={<SiGithub size={14} />}
+                                            rightSection={
+                                                <RiShareBoxLine size={14} />
+                                            }>
+                                            Live Demo
+                                        </Button>
+                                        <Button
+                                            onClick={() =>
+                                                window.open(
+                                                    project.link,
+                                                    "_blank"
+                                                )
+                                            }
+                                            variant="light"
+                                            leftSection={<SiGithub size={14} />}
+                                            rightSection={
+                                                <RiShareBoxLine size={14} />
+                                            }>
+                                            Code repo
+                                        </Button>
+                                    </Group>
                                 </Grid.Col>
-                                <Grid.Col span={7}>
-                                    {/* {project.images[0] && (
-                                        <Image
-                                            height="300vh"
-                                            src={project.images[0]}
-                                            alt={`${project.images[0]} 0`}
-                                            className={`${classes.image}`}
-                                        />
-                                    )} */}
-
-                                    <Carousel
+                                <Grid.Col span={7} p="lg">
+                                    <Image
+                                        src={project.images.src}
+                                        // alt={`${image} ${imageIndex}`}
+                                        className={classes.image}
+                                    />
+                                    {/* <Carousel
                                         slideGap="xl"
                                         draggable={false}
                                         withIndicators
@@ -499,7 +391,7 @@ export default function Content() {
                                                 </Carousel.Slide>
                                             )
                                         )}
-                                    </Carousel>
+                                    </Carousel> */}
                                 </Grid.Col>
                             </Grid>
                         </Grid.Col>
@@ -561,7 +453,13 @@ export default function Content() {
                     ))}
                 </SimpleGrid>
             </Container>
-            <Container size="xl" id="Contacts" my="xl" py="xl" ref={targetRef}>
+            <Container
+                size="xl"
+                id="Contacts"
+                my="xl"
+                py="xl"
+                ref={targetRef}
+                style={{ height: "40vh" }}>
                 <Title ta="center">
                     <p className="titlefont">Say Hello</p>
                 </Title>
@@ -577,37 +475,7 @@ export default function Content() {
                             underline="hover">
                             Email
                         </Anchor>
-                        {/* <Anchor
-                                href="https://www.facebook.com/messages/t/chatgvp"
-                                target="_blank">
-                                <button>Open Messenger</button>
-                            </Anchor> */}
-                        {/* <a
-                                href="https://mail.google.com/mail/?view=cm&fs=1&to=gvbpena@gmail.com"
-                                target="_blank">
-                                <Button>Send an Email</Button>
-                            </a> */}
                     </Text>
-                    {/* <Center>
-                            <ActionIcon variant="default" size="lg">
-                                <SiLinkedin
-                                    style={{ width: rem(24), height: rem(24) }}
-                                    stroke={1}
-                                />
-                            </ActionIcon>
-                            <ActionIcon variant="default" size="lg">
-                                <SiInstagram
-                                    style={{ width: rem(24), height: rem(24) }}
-                                    stroke={1}
-                                />
-                            </ActionIcon>
-                            <ActionIcon variant="default" size="lg">
-                                <SiDiscord
-                                    style={{ width: rem(24), height: rem(24) }}
-                                    stroke={1}
-                                />
-                            </ActionIcon>
-                        </Center> */}
                 </Container>
             </Container>
         </>
