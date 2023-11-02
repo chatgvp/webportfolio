@@ -34,7 +34,7 @@ import {
 import { FaJava } from "react-icons/fa"
 import { TbBrandMantine } from "react-icons/tb"
 
-import JairosoftImage from "../../public/experience/Jairosoft Logo.jpg"
+import JairosoftImage from "../../public/experience/Jairosoft Logo.png"
 import UMImage from "../../public/experience/university of mindanao.png"
 import CertHTMLCSS from "../../public/certificates/CertHTMLCSS.jpg"
 import CertJava from "../../public/certificates/CertJava.jpg"
@@ -42,7 +42,8 @@ import { JSX } from "react"
 import Resubot from "../../public/projects/resubot/0.png"
 import Escobar from "../../public/projects/escobar/0.png"
 import PurrfectPet from "../../public/projects/purrfectpet/0.png"
-import TaraUsap from "../../public/projects/chatapp/1.png"
+import TaraUsap from "../../public/projects/chatapp/0.png"
+import Apluz from "../../public/projects/apluz/0.png"
 
 const techIcons: TechTypeList = {
     "Frontend Centric": [
@@ -224,8 +225,8 @@ projectData.push({
 projectData.push({
     title: "Apluz Electronics ",
     description:
-        "Apluz Electronics is my Software Engineering Project, an eCommerce platform designed to cater to inventory management needs. It offers administrators tools for seamless stock management while providing customers with an intuitive and comprehensive shopping experience. The platform combines efficient inventory control with user-friendly features to enhance online retail operations.",
-    images: Escobar,
+        "Apluz Electronics is my Software Engineering Project, an eCommerce platform designed to cater to inventory management needs. It offers administrators tools for seamless stock management while providing customers with an intuitive and comprehensive shopping experience. ",
+    images: Apluz,
     tech: findTechInCategories([
         "HTML",
         "CSS",
@@ -241,7 +242,7 @@ projectData.push({
 projectData.push({
     title: "PurrfectPet Management System",
     description:
-        "This is Resubot a Resume Analysis System is a powerful tool designed to evaluate resumes and provide detailed insights. It scans and assesses resumes, extracting valuable information to offer tailored results. Employers can quickly identify qualified candidates while job seekers receive feedback on their resume's strengths and weaknesses, streamlining the hiring process.",
+        "The Pet Management System is a robust platform designed for pet and owner management. Tailored for veterinary clinics, it streamlines record-keeping, appointment scheduling, and medical history tracking for pets. ",
     images: PurrfectPet,
     tech: findTechInCategories([
         "HTML",
@@ -252,26 +253,26 @@ projectData.push({
         "jQuery",
         "JavaScript",
     ]),
-    link: "https://github.com/chatgvp/cce106resubot",
+    link: "https://github.com/chatgvp/purrfectpet",
 })
 
 projectData.push({
     title: "TaraUsap",
     description:
-        "This is Resubot a Resume Analysis System is a powerful tool designed to evaluate resumes and provide detailed insights. It scans and assesses resumes, extracting valuable information to offer tailored results. Employers can quickly identify qualified candidates while job seekers receive feedback on their resume's strengths and weaknesses, streamlining the hiring process.",
-    images: PurrfectPet,
+        "TaraUsap is a chat application using Flutter and Firebase. Users log in, join rooms, and chat with real-time, Firebase-powered messaging.",
+    images: TaraUsap,
     tech: findTechInCategories(["Flutter", "Firebase"]),
     link: "https://github.com/chatgvp/chatApplication",
 })
 
-projectData.push({
-    title: "Personal Web Portfolio",
-    description:
-        "This is Resubot a Resume Analysis System is a powerful tool designed to evaluate resumes and provide detailed insights. It scans and assesses resumes, extracting valuable information to offer tailored results. Employers can quickly identify qualified candidates while job seekers receive feedback on their resume's strengths and weaknesses, streamlining the hiring process.",
-    images: PurrfectPet,
-    tech: findTechInCategories(["NextJs", "ReactJs", "TypeScript", "Mantine"]),
-    link: "https://github.com/chatgvp/chatApplication",
-})
+// projectData.push({
+//     title: "Personal Web Portfolio",
+//     description:
+//         "This is Resubot a Resume Analysis System is a powerful tool designed to evaluate resumes and provide detailed insights. It scans and assesses resumes, extracting valuable information to offer tailored results. Employers can quickly identify qualified candidates while job seekers receive feedback on their resume's strengths and weaknesses, streamlining the hiring process.",
+//     images: PurrfectPet,
+//     tech: findTechInCategories(["NextJs", "ReactJs", "TypeScript", "Mantine"]),
+//     link: "https://github.com/chatgvp/chatApplication",
+// })
 // --------------------------------------------------------------------------Escobar Electronics --------------------------------------------------------------------
 
 // const escobarImageSources: any[] = []

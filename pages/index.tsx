@@ -26,12 +26,13 @@ const theme = createTheme({
 import { motion, AnimatePresence } from "framer-motion"
 export default function Home() {
     return (
-        <DirectionProvider>
-            <MantineProvider theme={theme}>
-                <ModalsProvider>
-                    <FullLayout />
-                </ModalsProvider>
-            </MantineProvider>
-        </DirectionProvider>
+        <FullLayout />
+        // <DirectionProvider>
+        //     <MantineProvider theme={theme}>
+        //         <ModalsProvider>
+
+        //         </ModalsProvider>
+        //     </MantineProvider>
+        // </DirectionProvider>
     )
 }

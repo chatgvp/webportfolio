@@ -118,16 +118,7 @@ export default function Content() {
                         <b>{experience.name}</b>
                         <Text c="dimmed">{experience.date}</Text>
                         <Container size="sm">
-                            <List
-                                type="ordered"
-                                icon={
-                                    <ThemeIcon
-                                        color="teal"
-                                        size={24}
-                                        radius="xl">
-                                        <SiBookstack size="1rem" />
-                                    </ThemeIcon>
-                                }>
+                            <List type="ordered">
                                 {experience.description.subdescription.map(
                                     (subDesc, subIndex) => (
                                         <List.Item key={subIndex}>
@@ -154,7 +145,7 @@ export default function Content() {
                 }}
                 mt="xl">
                 <h1 style={{ fontSize: "60px" }} className="titlefont">
-                    Hello, I'm{" "}
+                    Hello, I&apos;m{" "}
                     <Text
                         size="xl"
                         component="span"
@@ -186,7 +177,7 @@ export default function Content() {
                     <Grid.Col span={10}></Grid.Col>
                     <Grid.Col span={2}>
                         <Title order={1} my="sm">
-                            <p className="titlefont">ABOUT.</p>
+                            <div className="titlefont">ABOUT.</div>
                         </Title>
                     </Grid.Col>
                 </Grid>
@@ -298,7 +289,7 @@ export default function Content() {
                 <Grid gutter="xl">
                     <Grid.Col span={3}>
                         <Title order={1} my="sm">
-                            <p className="titlefont">PROJECTS.</p>
+                            <div className="titlefont">PROJECTS.</div>
                         </Title>
                     </Grid.Col>
                     <Grid.Col span={9}></Grid.Col>
@@ -317,9 +308,9 @@ export default function Content() {
                             <Grid>
                                 <Grid.Col span={5} p="lg">
                                     <Title order={4} my="sm">
-                                        <p className="titlefont">
+                                        <div className="titlefont">
                                             {project.title}
-                                        </p>
+                                        </div>
                                     </Title>
                                     <Text
                                         c="dimmed"
@@ -341,7 +332,7 @@ export default function Content() {
                                         ))}
                                     </SimpleGrid>
                                     <Group my="xl">
-                                        <Button
+                                        {/* <Button
                                             variant="outline"
                                             color="gray"
                                             // leftSection={<SiGithub size={14} />}
@@ -349,7 +340,7 @@ export default function Content() {
                                                 <RiShareBoxLine size={14} />
                                             }>
                                             Live Demo
-                                        </Button>
+                                        </Button> */}
                                         <Button
                                             onClick={() =>
                                                 window.open(
@@ -369,7 +360,7 @@ export default function Content() {
                                 <Grid.Col span={7} p="lg">
                                     <Image
                                         src={project.images.src}
-                                        // alt={`${image} ${imageIndex}`}
+                                        alt={"image"}
                                         className={classes.image}
                                     />
                                     {/* <Carousel
@@ -403,7 +394,7 @@ export default function Content() {
                     <Grid.Col span={9}></Grid.Col>
                     <Grid.Col span={3}>
                         <Title order={1} my="sm">
-                            <p className="titlefont">EXPERIENCES.</p>
+                            <div className="titlefont">EXPERIENCES.</div>
                         </Title>
                     </Grid.Col>
                 </Grid>
@@ -424,7 +415,7 @@ export default function Content() {
                 <Grid gutter="xl">
                     <Grid.Col span={3}>
                         <Title order={1} my="sm">
-                            <p className="titlefont">CERTIFICATES.</p>
+                            <div className="titlefont">CERTIFICATES.</div>
                         </Title>
                     </Grid.Col>
                     <Grid.Col span={9}></Grid.Col>
@@ -461,7 +452,7 @@ export default function Content() {
                 ref={targetRef}
                 style={{ height: "40vh" }}>
                 <Title ta="center">
-                    <p className="titlefont">Say Hello</p>
+                    <div className="titlefont">Say Hello</div>
                 </Title>
                 <Container p={0} size="xs">
                     <Text c="dimmed" ta="center">
