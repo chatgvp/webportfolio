@@ -137,35 +137,27 @@ export default function FullLayout() {
             window.removeEventListener("scroll", handleScrollWithRAF)
         }
     }, [])
-    const mainControls = useAnimation()
-    const ref = useRef(null)
-    const isInView = useInView(ref, { once: true })
-    const { toggleDirection, dir } = useDirection()
+    // const mainControls = useAnimation()
+    // const ref = useRef(null)
+    // const isInView = useInView(ref, { once: true })
+    // const { toggleDirection, dir } = useDirection()
     return (
         <>
-            <AppShell header={{ height: 60 }} padding="md">
+            <AppShell
+                header={{ height: 60 }}
+                aside={{
+                    width: 300,
+                    breakpoint: "md",
+                    collapsed: { desktop: false, mobile: !opened },
+                }}
+                padding="md">
                 <AppShell.Header>
                     <Container size="lg">
-                        <Burger
-                            opened={opened}
-                            onClick={toggle}
-                            hiddenFrom="sm"
-                            size="sm"
-                        />
                         <Group justify="space-between" mt="sm">
-                            <Title fz="xl">Gvpeña</Title>{" "}
                             <Group>
-                                <ActionIcon
-                                    onClick={() => toggleDirection()}
-                                    variant="default"
-                                    radius="md"
-                                    size="lg">
-                                    {dir === "rtl" ? (
-                                        <IconTextDirectionLtr stroke={1.5} />
-                                    ) : (
-                                        <IconTextDirectionRtl stroke={1.5} />
-                                    )}
-                                </ActionIcon>
+                                <Title fz="xl">Gvpeña</Title>
+                            </Group>
+                            <Group>
                                 <ActionIcon
                                     variant="default"
                                     size="lg"
@@ -218,11 +210,17 @@ export default function FullLayout() {
                                         <IconSun stroke={1} />
                                     )}
                                 </ActionIcon>
+                                <Burger
+                                    opened={opened}
+                                    onClick={toggle}
+                                    hiddenFrom="md"
+                                    size="sm"
+                                />
                             </Group>
                         </Group>
                     </Container>
                 </AppShell.Header>
-                <AppShell.Main style={{ flex: 1 }} ref={ref}>
+                <AppShell.Main style={{ flex: 1 }}>
                     <motion.div
                         initial="hidden"
                         animate="visible"

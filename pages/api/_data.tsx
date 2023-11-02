@@ -204,7 +204,7 @@ projectData.push({
         "jQuery",
         "JavaScript",
     ]),
-    link: "https://github.com/chatgvp/cce106resubot",
+    link: "https://github.com/chatgvp/escobarims",
 })
 projectData.push({
     title: "Resubot",
@@ -393,10 +393,10 @@ const Experience = [
             title: "Python/Django Developer Intern",
             subdescription: [
                 {
-                    text: "Acquired proficiency in Django, serving as the dedicated Backend Developer for the team.",
+                    text: "I've gained a lot of knowledge about APIs, especially OpenAI integration, which we've used in our project.",
                 },
                 {
-                    text: "Gained valuable experience in API manipulationlex challenges.",
+                    text: "I have learned a lot about backend integration using Django/Python as our backend",
                 },
             ],
         },
@@ -410,7 +410,7 @@ const Experience = [
             title: "Computer Science",
             subdescription: [
                 {
-                    text: "I learned a lot about computer science and gained a deep understanding of its complexities and intricacies.",
+                    text: "I learned a lot about Computer Science and math and gained a deep understanding of its complexities, data structures, Software Engineering, and logic-based problem-solving.",
                 },
                 {
                     text: "Acquired valuable and solid programming skills such as Web Development, Mobile Development, and other areas",

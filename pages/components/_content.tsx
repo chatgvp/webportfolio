@@ -4,28 +4,16 @@ import {
     Text,
     SimpleGrid,
     Card,
-    rem,
-    useMantineTheme,
     Tabs,
     Image,
     Button,
     Group,
     Grid,
-    Modal,
-    Paper,
     AspectRatio,
-    TextInput,
     Avatar,
     Divider,
-    Center,
-    BackgroundImage,
-    Box,
-    Stack,
     List,
-    ListItem,
-    ThemeIcon,
     Anchor,
-    ActionIcon,
 } from "@mantine/core"
 import classes from "../../styles/Content.module.css"
 import { Carousel } from "@mantine/carousel"
@@ -37,50 +25,11 @@ import {
     certificateData,
     techIcons,
 } from "../api/_data"
-import { useEffect, useRef } from "react"
 import { modals } from "@mantine/modals"
-import {
-    SiBookstack,
-    SiBootstrap,
-    SiC,
-    SiCplusplus,
-    SiCss3,
-    SiDjango,
-    SiFacebook,
-    SiFastapi,
-    SiFirebase,
-    SiFlutter,
-    SiFramer,
-    SiGit,
-    SiGithub,
-    SiGmail,
-    SiHtml5,
-    SiInstagram,
-    SiJavascript,
-    SiJquery,
-    SiMysql,
-    SiNextdotjs,
-    SiOpenai,
-    SiPhp,
-    SiPostman,
-    SiPython,
-    SiReact,
-    SiSharex,
-    SiTypescript,
-    SiVisualstudio,
-    SiXampp,
-    SiDiscord,
-    SiLinkedin,
-} from "react-icons/si"
-import { FaJava } from "react-icons/fa"
-import { TbBrandMantine } from "react-icons/tb"
+import { SiGithub } from "react-icons/si"
 
 import { PiHandWavingBold } from "react-icons/pi"
-import { motion, AnimatePresence, useInView, useAnimation } from "framer-motion"
-import { IconCircleCheck } from "@tabler/icons-react"
-import Aos from "aos"
-import "aos/dist/aos"
-
+import face from "../../public/face.png"
 // import ScrollAnimation from "react-animate-on-scroll"
 import { useScrollIntoView } from "@mantine/hooks"
 interface TechIcon {
@@ -140,7 +89,7 @@ export default function Content() {
                 id="About"
                 size="lg"
                 style={{
-                    height: "100vh",
+                    // height: "100vh",
                     paddingTop: "50px",
                 }}
                 mt="xl">
@@ -159,10 +108,10 @@ export default function Content() {
                     </div> */}
                 </h1>
                 <Text>
-                    A passionated <b>software developer</b> who enjoys
-                    problem-solving and building programming applications.
-                    I&apos;m excited to learn and grow, confidently progressing
-                    on this journey.
+                    A as aspiring and passionated <b>software developer</b> who
+                    enjoys problem-solving and building programming
+                    applications. I&apos;m excited to learn and grow,
+                    confidently progressing on this journey.
                 </Text>
                 <br />
                 <Button
@@ -185,10 +134,9 @@ export default function Content() {
                 <Grid grow my="xl">
                     <Grid.Col span={6}>
                         <Text my="sm">
-                            In 2017, I was introduced to programming, and from
-                            that moment, my genuine interest was sparked. Over
-                            time, this interest evolved into a dedicated
-                            professional pursuit.
+                            I have been studying programming for almost 6 years
+                            now, ever since 2017, and my genuine interest in it
+                            has evolved into a dedicated professional pursuit.
                         </Text>
                         <Text my="sm">
                             Here are some <b>Technnologies</b> that im familar
@@ -277,7 +225,8 @@ export default function Content() {
                     </Grid.Col>
                     <Grid.Col span={6}>
                         <Avatar
-                            src="https://scontent.fmnl9-3.fna.fbcdn.net/v/t1.18169-9/29375_114527412046652_599135455_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=b9145c&_nc_ohc=D6cHqGl78UQAX85z-a-&_nc_ht=scontent.fmnl9-3.fna&oh=00_AfC3E07QRnRVa5h8dWUnPz06F3dD188fGjyqkZWQj7Qwtw&oe=6567E31D"
+                            src={face.src}
+                            // src="https://scontent.fmnl9-3.fna.fbcdn.net/v/t1.18169-9/29375_114527412046652_599135455_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=b9145c&_nc_ohc=D6cHqGl78UQAX85z-a-&_nc_ht=scontent.fmnl9-3.fna&oh=00_AfC3E07QRnRVa5h8dWUnPz06F3dD188fGjyqkZWQj7Qwtw&oe=6567E31D"
                             size={300} // Set the size to "100%" to maximize the available space
                             radius={120}
                             mx="auto"
@@ -302,93 +251,93 @@ export default function Content() {
                     of projects that involve API integration, CSS design, and
                     database management.
                 </Text>
-                <Grid grow>
-                    {projectData.map((project, index) => (
-                        <Grid.Col span={12} key={index} my="xl">
-                            <Grid>
-                                <Grid.Col span={5} p="lg">
-                                    <Title order={4} my="sm">
-                                        <div className="titlefont">
-                                            {project.title}
-                                        </div>
-                                    </Title>
-                                    <Text
-                                        c="dimmed"
-                                        className={classes.cardTitle}
-                                        mt="md">
-                                        {project.description}
+                {projectData.map((project, index) => (
+                    <Grid>
+                        <Grid.Col span={{ base: 12, lg: 6 }} p="lg">
+                            <Title order={4} my="sm">
+                                <div className="titlefont">{project.title}</div>
+                            </Title>
+                            <Text
+                                c="dimmed"
+                                className={classes.cardTitle}
+                                mt="md">
+                                {project.description}
+                            </Text>
+                            <Text fw={700} py="sm">
+                                Technology used in this project
+                            </Text>
+                            <SimpleGrid cols={3}>
+                                {project.tech.map((tech, index) => (
+                                    <Text c="dimmed" key={index}>
+                                        <Group>
+                                            {tech.icon}
+                                            {tech.label}
+                                        </Group>
                                     </Text>
-                                    <Text fw={700} py="sm">
-                                        Technology used in this project
-                                    </Text>
-                                    <SimpleGrid cols={3}>
-                                        {project.tech.map((tech, index) => (
-                                            <Text c="dimmed" key={index}>
-                                                <Group>
-                                                    {tech.icon}
-                                                    {tech.label}
-                                                </Group>
-                                            </Text>
-                                        ))}
-                                    </SimpleGrid>
-                                    <Group my="xl">
-                                        {/* <Button
-                                            variant="outline"
-                                            color="gray"
-                                            // leftSection={<SiGithub size={14} />}
-                                            rightSection={
-                                                <RiShareBoxLine size={14} />
-                                            }>
-                                            Live Demo
-                                        </Button> */}
-                                        <Button
-                                            onClick={() =>
-                                                window.open(
-                                                    project.link,
-                                                    "_blank"
-                                                )
-                                            }
-                                            variant="light"
-                                            leftSection={<SiGithub size={14} />}
-                                            rightSection={
-                                                <RiShareBoxLine size={14} />
-                                            }>
-                                            Code repo
-                                        </Button>
-                                    </Group>
-                                </Grid.Col>
-                                <Grid.Col span={7} p="lg">
-                                    <Image
-                                        src={project.images.src}
-                                        alt={"image"}
-                                        className={classes.image}
-                                    />
-                                    {/* <Carousel
-                                        slideGap="xl"
-                                        draggable={false}
-                                        withIndicators
-                                        className={`${classes.carousel}`}>
-                                        {project.images.map(
-                                            (image, imageIndex) => (
-                                                <Carousel.Slide
-                                                    className={`${classes.card}`}
-                                                    key={imageIndex}>
-                                                    <Image
-                                                        height="300vh"
-                                                        src={image}
-                                                        alt={`${image} ${imageIndex}`}
-                                                        className={`${classes.image}`}
-                                                    />
-                                                </Carousel.Slide>
-                                            )
-                                        )}
-                                    </Carousel> */}
-                                </Grid.Col>
-                            </Grid>
+                                ))}
+                            </SimpleGrid>
+                            <Group my="xl">
+                                <Button
+                                    onClick={() =>
+                                        window.open(project.link, "_blank")
+                                    }
+                                    variant="light"
+                                    leftSection={<SiGithub size={14} />}
+                                    rightSection={<RiShareBoxLine size={14} />}>
+                                    Code repository
+                                </Button>
+                            </Group>
                         </Grid.Col>
-                    ))}
-                </Grid>
+                        <Grid.Col span={{ base: 12, lg: 6 }} p="lg">
+                            <Image
+                                src={project.images.src}
+                                alt={"image"}
+                                className={classes.image}
+                            />
+                        </Grid.Col>
+                    </Grid>
+                ))}
             </Container>
+            {/* {projectData.map((project, index) => (
+                    <div>
+                        <Title order={2} my="sm">
+                            <div className="titlefont">{project.title}</div>
+                        </Title>
+                        <Image
+                            src={project.images.src}
+                            alt={"image"}
+                            className={classes.image}
+                        />
+                        <Text c="dimmed" className={classes.cardTitle} mt="md">
+                            {project.description}
+                        </Text>
+                        <Text fw={700} py="sm">
+                            Technology used in this project
+                        </Text>
+                        <SimpleGrid cols={3}>
+                            {project.tech.map((tech, index) => (
+                                <Text c="dimmed" key={index}>
+                                    <Group>
+                                        {tech.icon}
+                                        {tech.label}
+                                    </Group>
+                                </Text>
+                            ))}
+                        </SimpleGrid>
+                        <Group my="xl">
+                            <Button
+                                onClick={() =>
+                                    window.open(project.link, "_blank")
+                                }
+                                variant="light"
+                                leftSection={<SiGithub size={14} />}
+                                rightSection={<RiShareBoxLine size={14} />}>
+                                Code repo
+                            </Button>
+                        </Group>
+                        <Divider />
+                    </div>
+                ))} */}
             <Container py="xl" id="Experiences" size="lg">
                 <Grid gutter="xl">
                     <Grid.Col span={9}></Grid.Col>
@@ -420,15 +369,7 @@ export default function Content() {
                     </Grid.Col>
                     <Grid.Col span={9}></Grid.Col>
                 </Grid>
-                <Divider></Divider>
-                <Text
-                    c="dimmed"
-                    className={classes.description}
-                    ta="center"
-                    mt="md">
-                    Programming became my passion since its introduction to me;
-                    it immediately caught my interest
-                </Text>
+                <Divider mb="xl" />
                 <SimpleGrid cols={{ base: 1, sm: 2 }}>
                     {certificateData.map((article, index) => (
                         <Card
@@ -444,6 +385,7 @@ export default function Content() {
                     ))}
                 </SimpleGrid>
             </Container>
+
             <Container
                 size="xl"
                 id="Contacts"
