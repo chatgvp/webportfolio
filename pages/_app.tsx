@@ -8,6 +8,7 @@ import {
     MantineColorsTuple,
 } from "@mantine/core"
 import { ModalsProvider } from "@mantine/modals"
+
 const theme = createTheme({
     fontFamily: "Poppins, sans-serif",
 })
