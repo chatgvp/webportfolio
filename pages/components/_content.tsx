@@ -252,7 +252,7 @@ export default function Content() {
                     database management.
                 </Text>
                 {projectData.map((project, index) => (
-                    <Grid>
+                    <Grid key={index}>
                         <Grid.Col span={{ base: 12, lg: 6 }} p="lg">
                             <Title order={4} my="sm">
                                 <div className="titlefont">{project.title}</div>

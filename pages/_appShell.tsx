@@ -136,7 +136,7 @@ export default function FullLayout() {
         return () => {
             window.removeEventListener("scroll", handleScrollWithRAF)
         }
-    }, [])
+    }, [handleScroll])
     // const mainControls = useAnimation()
     // const ref = useRef(null)
     // const isInView = useInView(ref, { once: true })
