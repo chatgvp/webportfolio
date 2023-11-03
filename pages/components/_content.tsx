@@ -108,10 +108,10 @@ export default function Content() {
                     </div> */}
                 </h1>
                 <Text>
-                    A as aspiring and passionated <b>software developer</b> who
-                    enjoys problem-solving and building programming
-                    applications. I&apos;m excited to learn and grow,
-                    confidently progressing on this journey.
+                    A a passionated <b>software developer</b> who enjoys
+                    problem-solving and building programming applications.
+                    I&apos;m excited to learn and grow, confidently progressing
+                    on this journey.
                 </Text>
                 <br />
                 <Button
