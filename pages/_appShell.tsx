@@ -146,7 +146,7 @@ export default function FullLayout() {
             <AppShell
                 header={{ height: 60 }}
                 aside={{
-                    width: 150,
+                    width: 200,
                     breakpoint: "md",
                     collapsed: { desktop: false, mobile: !opened },
                 }}
