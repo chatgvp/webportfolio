@@ -236,7 +236,7 @@ projectData.push({
         "jQuery",
         "JavaScript",
     ]),
-    link: "https://github.com/chatgvp/cce106resubot",
+    link: "https://github.com/chatgvp/apluz.com",
 })
 
 projectData.push({
@@ -264,6 +264,51 @@ projectData.push({
     tech: findTechInCategories(["Flutter", "Firebase"]),
     link: "https://github.com/chatgvp/chatApplication",
 })
+
+const Experience = [
+    {
+        image: JairosoftImage.src,
+        date: "July to August 2023",
+        name: "Jairosoft, INC",
+        description: {
+            title: "Python/Django Developer Intern",
+            subdescription: [
+                {
+                    text: "I've gained a lot of knowledge about APIs, especially OpenAI integration, which we've used in our project.",
+                },
+                {
+                    text: "I have gained valuable knowledge about backend integration using Django/Python as our backend.",
+                },
+            ],
+        },
+    },
+
+    {
+        image: UMImage.src,
+        date: "August 2020 to Present",
+        name: "University of Mindanao",
+        description: {
+            title: "Computer Science",
+            subdescription: [
+                {
+                    text: "I learned a lot about Computer Science and math and gained a deep understanding of its complexities, data structures, Software Engineering, and logic-based problem-solving.",
+                },
+                {
+                    text: "Acquired valuable and solid programming skills such as Web Development, Mobile Development, and other areas",
+                },
+            ],
+        },
+    },
+]
+
+const certificateData = [
+    {
+        image: CertHTMLCSS.src,
+    },
+    {
+        image: CertJava.src,
+    },
+]
 
 // projectData.push({
 //     title: "Personal Web Portfolio",
@@ -383,50 +428,5 @@ projectData.push({
 //         tech: ["PHP", "Mysql", "Bootstrap", "HTML/CSS", "Javascript", "JQuery"],
 //     })
 // })
-
-const Experience = [
-    {
-        image: JairosoftImage.src,
-        date: "July to August 2023",
-        name: "Jairosoft, INC",
-        description: {
-            title: "Python/Django Developer Intern",
-            subdescription: [
-                {
-                    text: "I've gained a lot of knowledge about APIs, especially OpenAI integration, which we've used in our project.",
-                },
-                {
-                    text: "I have learned a lot about backend integration using Django/Python as our backend",
-                },
-            ],
-        },
-    },
-
-    {
-        image: UMImage.src,
-        date: "August 2020 to Present",
-        name: "University of Mindanao",
-        description: {
-            title: "Computer Science",
-            subdescription: [
-                {
-                    text: "I learned a lot about Computer Science and math and gained a deep understanding of its complexities, data structures, Software Engineering, and logic-based problem-solving.",
-                },
-                {
-                    text: "Acquired valuable and solid programming skills such as Web Development, Mobile Development, and other areas",
-                },
-            ],
-        },
-    },
-]
-
-const certificateData = [
-    {
-        image: CertHTMLCSS.src,
-    },
-    {
-        image: CertJava.src,
-    },
-]
 
 export { projectData, Experience, certificateData, techIcons }

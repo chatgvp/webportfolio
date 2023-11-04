@@ -99,18 +99,15 @@ export default function Content() {
                         size="xl"
                         component="span"
                         variant="gradient"
-                        gradient={{ from: "blue", to: "cyan" }}
+                        gradient={{ from: "blue", to: "#9AE2FF" }}
                         inherit>
                         George Vincent Peña
                     </Text>{" "}
-                    {/* <div className="center-container">
-                        <div className="center"></div>{" "}
-                    </div> */}
                 </h1>
                 <Text>
-                    A a passionated <b>software developer</b> who enjoys
-                    problem-solving and building programming applications.
-                    I&apos;m excited to learn and grow, confidently progressing
+                    As a passionated <b>software developer</b> who enjoys
+                    problem-solving and building programming applications. I am
+                    excited to continue learn and grow, confidently progressing
                     on this journey.
                 </Text>
                 <br />
@@ -120,7 +117,7 @@ export default function Content() {
                             alignment: "center",
                         })
                     }>
-                    Say Hello <PiHandWavingBold />
+                    Get In Touch <PiHandWavingBold />
                 </Button>
                 <Grid gutter="xl">
                     <Grid.Col span={10}></Grid.Col>
@@ -134,9 +131,10 @@ export default function Content() {
                 <Grid grow my="xl">
                     <Grid.Col span={6}>
                         <Text my="sm">
-                            I have been studying programming for almost 6 years
-                            now, ever since 2017, and my genuine interest in it
-                            has evolved into a dedicated professional pursuit.
+                            I have been studying programming and creating
+                            projects for about 4 years now, and my genuine
+                            interest in it has evolved into a dedicated
+                            professional pursuit.
                         </Text>
                         <Text my="sm">
                             Here are some <b>Technnologies</b> that im familar
@@ -298,46 +296,6 @@ export default function Content() {
                     </Grid>
                 ))}
             </Container>
-            {/* {projectData.map((project, index) => (
-                    <div>
-                        <Title order={2} my="sm">
-                            <div className="titlefont">{project.title}</div>
-                        </Title>
-                        <Image
-                            src={project.images.src}
-                            alt={"image"}
-                            className={classes.image}
-                        />
-                        <Text c="dimmed" className={classes.cardTitle} mt="md">
-                            {project.description}
-                        </Text>
-                        <Text fw={700} py="sm">
-                            Technology used in this project
-                        </Text>
-                        <SimpleGrid cols={3}>
-                            {project.tech.map((tech, index) => (
-                                <Text c="dimmed" key={index}>
-                                    <Group>
-                                        {tech.icon}
-                                        {tech.label}
-                                    </Group>
-                                </Text>
-                            ))}
-                        </SimpleGrid>
-                        <Group my="xl">
-                            <Button
-                                onClick={() =>
-                                    window.open(project.link, "_blank")
-                                }
-                                variant="light"
-                                leftSection={<SiGithub size={14} />}
-                                rightSection={<RiShareBoxLine size={14} />}>
-                                Code repo
-                            </Button>
-                        </Group>
-                        <Divider />
-                    </div>
-                ))} */}
             <Container py="xl" id="Experiences" size="lg">
                 <Grid gutter="xl">
                     <Grid.Col span={9}></Grid.Col>
@@ -394,7 +352,7 @@ export default function Content() {
                 ref={targetRef}
                 style={{ height: "40vh" }}>
                 <Title ta="center">
-                    <div className="titlefont">Say Hello</div>
+                    <div className="titlefont">Get In Touch</div>
                 </Title>
                 <Container p={0} size="xs">
                     <Text c="dimmed" ta="center">

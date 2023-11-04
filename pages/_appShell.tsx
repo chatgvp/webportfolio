@@ -1,9 +1,7 @@
 import { useDisclosure, useIntersection, useWindowScroll } from "@mantine/hooks"
 import {
     AppShell,
-    Avatar,
     Burger,
-    Button,
     Group,
     Text,
     ActionIcon,
@@ -13,24 +11,8 @@ import {
     useMantineColorScheme,
     rem,
     Box,
-    Paper,
-    AspectRatio,
-    Card,
-    Divider,
-    Grid,
-    SimpleGrid,
-    useDirection,
 } from "@mantine/core"
-import {
-    IconBrandInstagram,
-    IconBrandTwitter,
-    IconBrandYoutube,
-    IconListSearch,
-    IconMoon,
-    IconSun,
-    IconTextDirectionLtr,
-    IconTextDirectionRtl,
-} from "@tabler/icons-react"
+import { IconListSearch, IconMoon, IconSun } from "@tabler/icons-react"
 import { motion, AnimatePresence, useAnimation, useInView } from "framer-motion"
 import cx from "clsx"
 import classes from "../styles/Home.module.css"
@@ -40,7 +22,6 @@ import { Link } from "react-scroll"
 import { Carousel } from "@mantine/carousel"
 import { projectData, certificateData } from "./api/_data"
 import { SiGithub, SiLinkedin } from "react-icons/si"
-import { dir } from "console"
 const links = [
     { label: "About", link: "#About", order: 1 },
     // { label: "Skills", link: "#Skills", order: 1 },
@@ -137,10 +118,6 @@ export default function FullLayout() {
             window.removeEventListener("scroll", handleScrollWithRAF)
         }
     }, [handleScroll])
-    // const mainControls = useAnimation()
-    // const ref = useRef(null)
-    // const isInView = useInView(ref, { once: true })
-    // const { toggleDirection, dir } = useDirection()
     return (
         <>
             <AppShell
@@ -244,7 +221,7 @@ export default function FullLayout() {
                             style={{ width: rem(18), height: rem(18) }}
                             stroke={1.5}
                         />
-                        <Text>Table of contents</Text>
+                        <Text size="sm">Table of contents</Text>
                     </Group>
                     {items}
                 </AppShell.Aside>
