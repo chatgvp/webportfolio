@@ -60,7 +60,7 @@ export default function Content() {
             </Tabs.List>
             <div>
                 {Experience.map((experience, index) => (
-                    <Tabs.Panel value={index.toString()} key={index} p="xl">
+                    <Tabs.Panel value={index.toString()} key={index} p="lg">
                         <h4>
                             <b>{experience.description.title}</b>
                         </h4>
