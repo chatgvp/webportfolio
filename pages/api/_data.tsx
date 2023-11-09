@@ -294,7 +294,7 @@ const Experience = [
                     text: "I learned a lot about Computer Science and math and gained a deep understanding of its complexities, data structures, Software Engineering, and logic-based problem-solving.",
                 },
                 {
-                    text: "Acquired valuable and solid programming skills such as Web Development, Mobile Development, and other areas",
+                    text: "Acquired valuable and solid programming skills such as Web Development, Mobile Development, and other areas.",
                 },
             ],
         },
