@@ -191,10 +191,10 @@ const findTechInCategories = (techList: string[]): TechType[] => {
     return techTypeList
 }
 projectData.push({
-    title: "Escobar Inventory Management System ",
+    title: "PurrfectPet Management System",
     description:
-        "The Escobar Inventory Management System represents a sophisticated web programming project focused on facilitating Create, Read, Update, and Delete (CRUD) operations while effectively managing stock. This system offers a refined approach to inventory control, significantly enhancing operational efficiency and data accuracy for businesses.",
-    images: Escobar,
+        "The Pet Management System is a robust platform designed for pet and owner management. Tailored for veterinary clinics, it streamlines record-keeping, appointment scheduling, and medical history tracking for pets. ",
+    images: PurrfectPet,
     tech: findTechInCategories([
         "HTML",
         "CSS",
@@ -204,7 +204,7 @@ projectData.push({
         "jQuery",
         "JavaScript",
     ]),
-    link: "https://github.com/chatgvp/escobarims",
+    link: "https://github.com/chatgvp/purrfectpet",
 })
 projectData.push({
     title: "Resubot",
@@ -221,7 +221,6 @@ projectData.push({
     ]),
     link: "https://github.com/chatgvp/cce106resubot",
 })
-
 projectData.push({
     title: "Apluz Electronics ",
     description:
@@ -238,12 +237,11 @@ projectData.push({
     ]),
     link: "https://github.com/chatgvp/apluz.com",
 })
-
 projectData.push({
-    title: "PurrfectPet Management System",
+    title: "Escobar Inventory Management System ",
     description:
-        "The Pet Management System is a robust platform designed for pet and owner management. Tailored for veterinary clinics, it streamlines record-keeping, appointment scheduling, and medical history tracking for pets. ",
-    images: PurrfectPet,
+        "The Escobar Inventory Management System represents a sophisticated web programming project focused on facilitating Create, Read, Update, and Delete (CRUD) operations while effectively managing stock. This system offers a refined approach to inventory control, significantly enhancing operational efficiency and data accuracy for businesses.",
+    images: Escobar,
     tech: findTechInCategories([
         "HTML",
         "CSS",
@@ -253,7 +251,7 @@ projectData.push({
         "jQuery",
         "JavaScript",
     ]),
-    link: "https://github.com/chatgvp/purrfectpet",
+    link: "https://github.com/chatgvp/escobarims",
 })
 
 projectData.push({
